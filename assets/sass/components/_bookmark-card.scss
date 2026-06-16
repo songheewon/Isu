@@ -9,9 +9,10 @@
 a.kg-bookmark-container {
   display: flex;
   min-height: 144px;
-  color: var(--color-text);
-  border: 0;
-  background-color: var(--bg-gray);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  background-color: var(--background-secondary);
+  border-bottom: 0;
 
   @include attention() {
     text-decoration: none;
@@ -19,10 +20,6 @@ a.kg-bookmark-container {
     .kg-bookmark-title {
       color: var(--color-brand);
     }
-  }
-
-  .kg-card-hascaption & {
-    border-bottom: 1px solid var(--color-white);
   }
 }
 
@@ -40,18 +37,18 @@ a.kg-bookmark-container {
 }
 
 .kg-bookmark-title {
-  font-size: $type--h-xxxs;
-  line-height: $type--h-xxxs-lh;
-  font-weight: $type-700;
-  transition: color $global-faster-transition ease;
+  font-size: $type-md;
+  line-height: $type-md-lh;
+  font-weight: $type-500;
 }
 
 .kg-bookmark-description {
-  color: var(--color-gray);
-  font-size: $type-xs;
-  line-height: $type-xs-lh;
+  color: var(--color-text-secondary);
+  font-size: $type-sm;
+  line-height: $type-sm-lh;
   font-weight: $type-500;
-  margin-top: $space-8;
+  margin-top: $space-4;
+  margin-bottom: $space-4;
   max-height: $space-48;
   overflow-y: hidden;
   display: -webkit-box;
@@ -64,7 +61,7 @@ a.kg-bookmark-container {
   flex-wrap: wrap;
   align-items: center;
   margin-top: $space-8;
-  color: var(--color-gray);
+  color: var(--color-text-secondary);
   font-size: $type-xs;
   line-height: $type-xs-lh;
 }
@@ -79,13 +76,16 @@ a.kg-bookmark-container {
 .kg-bookmark-icon {
   width: $space-24;
   height: $space-24;
-  border-radius: $space-24;
   margin-right: $space-8;
 }
 
-.kg-bookmark-author:after {
-  content: '•';
-  margin: 0 $space-8;
+.kg-bookmark-author {
+  font-weight: $type-500;
+
+  // &:after {
+  //   content: '•';
+  //   margin: 0 $space-8;
+  // }
 }
 
 .kg-bookmark-thumbnail {

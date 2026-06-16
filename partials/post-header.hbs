@@ -1,0 +1,92 @@
+<header class='c-post-header'>
+  <div class='c-post-header__title'>{{ title }}</div>
+
+  {{#is 'post'}}
+    <div class='c-post-header__meta'>
+      <div class='c-post-header__author-info'>
+        {{#primary_author}}
+          <a href="{{url}}" class="c-post-header__author">
+            {{#if profile_image}}
+              <img src="{{profile_image}}" alt="{{name}}" class="c-post-header__author-image">
+            {{else}}
+              <div class="c-post-header__author-image c-post-header__author-image--default">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="#999"/>
+                </svg>
+              </div>
+            {{/if}}
+            <div class="c-post-header__author-details">
+              <span class="c-post-header__author-name">{{name}}</span>
+              <div class="c-post-header__author-subline">
+                <time class='c-post-header__date' datetime='{{date ../published_at format="YYYY-MM-DD"}}'>{{date ../published_at format='YYYY년 M월 D일'}}</time>
+                {{#match ../visibility "paid"}}
+                  <span class="c-post-header__paid-badge">유료</span>
+                {{/match}}
+              </div>
+            </div>
+          </a>
+        {{/primary_author}}
+      </div>
+
+      <div class="c-post-header__actions{{#if (not @site.comment_read_permission "none")}}{{else}} c-post-header__actions--share-only{{/if}}">
+        {{#if (not @site.comment_read_permission "none")}}
+          <a class="c-post-header__comment-icon" href="{{url}}#ghost-comments-root" data-portal="comment" data-post-uuid="{{uuid}}">
+            <svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M17.0994 3.90039C17.6542 3.90052 18.1259 4.11281 18.4578 4.48438C18.7887 4.85502 18.9749 5.37709 18.9753 5.98828V15.8682C18.9753 16.4796 18.7891 17.0025 18.4578 17.373C18.1255 17.7443 17.6528 17.956 17.0974 17.9561C14.9075 17.9561 12.7175 17.9554 10.5271 17.9609C10.4444 17.9634 10.3622 17.995 10.2937 18.0527C9.03686 19.169 7.78367 20.2908 6.53295 21.416H6.53197C6.47953 21.4627 6.42247 21.5164 6.36595 21.5645L6.36498 21.5654C6.26068 21.6523 6.14561 21.7126 6.02123 21.7314C5.896 21.7503 5.76942 21.725 5.64525 21.6553C5.52752 21.5933 5.43076 21.4944 5.36595 21.373C5.30119 21.2516 5.27025 21.1124 5.27709 20.9727V18.1045L5.27611 17.9561H3.71068V17.9551C3.2614 17.9629 2.82805 17.7799 2.49877 17.4453V17.4443C2.304 17.2516 2.1495 17.0142 2.04662 16.749C1.94349 16.4831 1.89371 16.1954 1.90111 15.9062V5.98926C1.90116 5.37784 2.08849 4.85524 2.41966 4.48438C2.75164 4.11288 3.22299 3.90044 3.77709 3.90039H17.0994ZM3.76927 5.35645C3.58051 5.35645 3.45 5.41138 3.36595 5.50488C3.28026 5.60046 3.22826 5.75205 3.22826 5.9707V15.8877C3.22831 16.1008 3.28013 16.2493 3.36498 16.3438C3.44841 16.4365 3.57737 16.4918 3.76244 16.4922H5.85033C6.08443 16.4922 6.27838 16.5593 6.41185 16.707C6.54357 16.8531 6.6019 17.0621 6.60228 17.3145C6.60292 18.0241 6.60238 18.7308 6.60228 19.4697C7.61624 18.5626 8.62977 17.6539 9.64232 16.7441C9.82157 16.5774 10.0508 16.4866 10.2878 16.4922C12.554 16.4974 14.821 16.4974 17.0876 16.4922C17.2921 16.4921 17.4265 16.4378 17.5115 16.3447C17.5979 16.2499 17.6501 16.0967 17.6501 15.8633V5.98535C17.6501 5.75694 17.5988 5.60244 17.5134 5.50586C17.43 5.41163 17.2996 5.35658 17.1052 5.35645H3.76927Z" fill="black"/>
+</svg>
+              <span class="c-post-header__comment-count">{{comment_count}}</span>
+          </a>
+        {{/if}}
+        <button type="button" class="c-post-header__share-btn" onclick="document.getElementById('shareModal').classList.add('is-active')" aria-label="공유하기">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M13.4401 4.06704C13.7081 3.94543 14.0224 3.99179 14.2439 4.18558L22.2439 11.1856C22.4066 11.328 22.5 11.5337 22.5 11.75C22.5 11.9663 22.4066 12.172 22.2439 12.3144L14.2439 19.3144C14.0224 19.5082 13.7081 19.5546 13.4401 19.433C13.1721 19.3114 13 19.0443 13 18.75V15.5097C11.0745 15.5614 9.42098 15.8246 7.93846 16.4423C6.27906 17.1337 4.78146 18.2914 3.35 20.2C3.15631 20.4583 2.81909 20.5636 2.51283 20.4615C2.20657 20.3594 2 20.0728 2 19.75C2 15.6051 3.14684 12.8621 5.29121 11.0519C7.25185 9.39682 9.94565 8.6148 13 8.1094V4.75001C13 4.45573 13.1721 4.18864 13.4401 4.06704ZM14.5 6.40284V8.75001C14.5 9.12084 14.229 9.436 13.8624 9.49155C10.5789 9.98904 8.01279 10.7175 6.25879 12.1981C4.90046 13.3448 3.95594 15.0096 3.62761 17.5873C4.78065 16.4385 6.01363 15.6193 7.36154 15.0577C9.29 14.2542 11.4011 14 13.75 14C14.1642 14 14.5 14.3358 14.5 14.75V17.0972L20.6111 11.75L14.5 6.40284Z" fill="#17191A"/>
+</svg>
+        </button>
+      </div>
+
+      <!-- 공유 모달 -->
+      <div id="shareModal" class="c-share-modal">
+        <div class="c-share-modal__overlay" onclick="document.getElementById('shareModal').classList.remove('is-active')"></div>
+        <div class="c-share-modal__content">
+          <button class="c-share-modal__close" onclick="document.getElementById('shareModal').classList.remove('is-active')">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <h3 class="c-share-modal__title">공유하기</h3>
+          <div class="c-share-modal__buttons">
+            <button class="c-share-modal__btn c-share-modal__btn--copy" onclick="navigator.clipboard.writeText('{{url absolute="true"}}'); this.innerHTML='복사됨!'; setTimeout(() => this.innerHTML='<svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;><path d=&quot;M8 5H6C4.89543 5 4 5.89543 4 7V19C4 20.1046 4.89543 21 6 21H16C17.1046 21 18 20.1046 18 19V18M8 5C8 6.10457 8.89543 7 10 7H12C13.1046 7 14 6.10457 14 5M8 5C8 3.89543 8.89543 3 10 3H12C13.1046 3 14 3.89543 14 5M14 5H16C17.1046 5 18 5.89543 18 7V10&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot;/></svg><span>링크 복사</span>', 2000)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M8 5H6C4.89543 5 4 5.89543 4 7V19C4 20.1046 4.89543 21 6 21H16C17.1046 21 18 20.1046 18 19V18M8 5C8 6.10457 8.89543 7 10 7H12C13.1046 7 14 6.10457 14 5M8 5C8 3.89543 8.89543 3 10 3H12C13.1046 3 14 3.89543 14 5M14 5H16C17.1046 5 18 5.89543 18 7V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>링크 복사</span>
+            </button>
+            <a class="c-share-modal__btn c-share-modal__btn--twitter" href="https://twitter.com/intent/tweet?url={{url absolute="true"}}&text={{encode title}}" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span>X</span>
+            </a>
+            <a class="c-share-modal__btn c-share-modal__btn--facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <span>Facebook</span>
+            </a>
+            <a class="c-share-modal__btn c-share-modal__btn--kakao" href="javascript:void(0)" onclick="if(window.Kakao){Kakao.Share.sendDefault({objectType:'feed',content:{title:'{{title}}',imageUrl:'{{feature_image}}',link:{mobileWebUrl:'{{url absolute="true"}}',webUrl:'{{url absolute="true"}}'}}});}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c5.799 0 10.5 3.664 10.5 8.185 0 4.52-4.701 8.184-10.5 8.184a13.5 13.5 0 01-1.727-.11l-4.408 2.883c-.501.265-.678.236-.472-.413l.892-3.678c-2.88-1.46-4.785-3.99-4.785-6.866C1.5 6.665 6.201 3 12 3z"/></svg>
+              <span>카카오톡</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/is}}
+
+{{!--  {{#if feature_image}}
+    <figure class='c-post-media'>
+      <img
+        alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+        class='c-post-media__image lazyload'
+        data-src='{{ img_url feature_image size='post-image-large' }}'
+      >
+      {{#if feature_image_caption}}
+        <figcaption class='c-post-media__caption'>{{ feature_image_caption }}</figcaption>
+      {{/if}}
+    </figure>
+  {{/if}} --}}
+</header>

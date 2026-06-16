@@ -10,6 +10,14 @@
   margin-top: $space-16;
 }
 
+.u-mt-32 {
+  margin-top: $space-32;
+}
+
+.u-mb-8 {
+  margin-bottom: $space-8;
+}
+
 .u-mb-16 {
   margin-bottom: $space-16;
 }
@@ -20,4 +28,14 @@
 
 .u-mb-32 {
   margin-bottom: $space-32;
+}
+
+.u-p-32 {
+  padding: $space-32;
+}
+
+.u-p-40-lg {
+  @include mq($from: desktop) {
+    padding: $space-40;
+  }
 }

@@ -1,26 +1,33 @@
 {{!< default}}
 
-<div class='o-wrapper'>
-  <div class='c-archive'>
-    <div class='o-grid'>
-      <div class='o-grid__col o-grid__col--full'>
-        <h1 class='c-archive__title'>404</h1>
-        <p class='c-archive__description'>{{t 'Page Not Found' }}</p>
-      </div>
-    </div>
-  </div>
+{{#contentFor 'title'}}{{t 'Page Not Found' }}{{/contentFor}}
 
-  <div class='o-grid'>
-    <div class='o-grid__col o-grid__col--full'>
-      <div class='c-title-bar'>
-        <h3 class='c-title-bar__title'>{{t 'Latest Episodes' }}</h3>
-      </div>
+<div class='o-grid'>
+  <div class='o-grid__col o-grid__col--4-4-s'>
+    <div class='c-archive c-archive--no-border'>
+      <h1 class='c-archive__title'>404</h1>
+      <p class='c-archive__description'>{{t 'Page Not Found' }}</p>
     </div>
-  </div>
-
-  <div class='o-grid js-grid'>
-    {{#get 'posts' filter='tags:podcast' limit='6'}}
-      {{> loop }}
-    {{/get}}
   </div>
 </div>
+
+{{#get 'posts' limit='8'}}
+  {{#if posts}}
+    <div class='o-grid'>
+        <div class='o-grid__col o-grid__col--4-4-s'>
+        <div class='c-title-bar'>
+          <h3 class='c-title-bar__title'>{{t 'Recent Posts' }}</h3>
+          <span class='c-title-bar__divider'></span>
+        </div>
+      </div>
+    </div>
+
+    <div class='o-grid'>
+        <div class='o-grid__col o-grid__col--4-4-s'>
+          <div class="c-post-grid">
+            {{> loop }}
+          </div>
+      </div>
+    </div>
+  {{/if}}
+{{/get}}

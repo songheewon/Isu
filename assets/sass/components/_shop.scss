@@ -1,47 +1,58 @@
+/* 상단 여백: 인기 콘텐츠(.c-home-rankings)와 동일 margin-top + 내부 패딩 */
 .c-shop {
-  padding-top: 46px;
-  border-top: 1px solid #000;
+  margin-top: $space-48;
+  padding-top: $space-16;
 
-  .home-template & {
-    margin-top: 48px;
+  @include mq($from: tablet) {
+    margin-top: 100px;
+    padding-top: 24px;
   }
 
-  .o-grid {
-    @include mobile { max-width: 390px; }
-    @include tablet { max-width: 768px; }
-    @include desktop {
-      max-width: 1024px;
-      padding-right: 32px;
-      padding-left: 32px;
-    }
-    @include qhd {
-      max-width: 1300px;
-      padding-right: 48px;
-      padding-left: 48px;
-    }
+  &__inner {
+    width: 100%;
+    box-sizing: border-box;
   }
 
   &__title {
-    font-size: 24px;
-    font-family: "Anton", sans-serif;
+    /* c-post-related__heading 과 동일한 타이포 (관련 콘텐츠 헤딩) */
+    margin: 0;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    color: #1a1d1f;
+
+    @include mq($from: tablet) {
+      font-size: 24px;
+    }
   }
 
   &__tags {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 32px 0;
+    gap: $space-8;
+    padding: $space-16 0;
     flex-wrap: wrap;
+
+    @include mq($from: tablet) {
+      gap: 12px;
+      padding: $space-32 0;
+    }
 
     a {
       display: inline-block;
       font-size: $type-14;
       font-weight: 700;
-      border: 1px solid #d9d9d9;
-      color: #d9d9d9;
+      border: 1px solid rgba(0,0,0,0.3);
+      color: rgba(0,0,0,0.3);
       border-radius: 50em;
-      padding: 16px 32px;
+      padding: 10px 20px;
       line-height: 1;
+
+      @include mq($from: tablet) {
+        padding: 16px 32px;
+      }
 
       &.active {
         border-color: #100f14;
@@ -66,52 +77,129 @@
 
     &__swiper {
       overflow: hidden;
+      padding-bottom: 24px;
+      padding-left: 3px;
+      padding-right: 3px;
+
+      @include desktop {
+        padding-bottom: 16px;
+      }
 
       .swiper-wrapper {
-        height: 448px;
+        height: auto;
 
-        @include tablet { height: 780px; }
-        @include desktop { height: auto; }
+        @include desktop { 
+          height: auto; 
+        }
       }
 
       .swiper-slide {
-        height: 190px;
+        height: auto; // 컨텐츠에 맞게 자동 높이
+        display: flex;
+        flex-direction: column;
 
-        @include tablet { height: 340px; }
-        @include desktop { height: auto; }
+        @include tablet { 
+          height: auto; 
+        }
+        @include desktop { 
+          height: auto; 
+        }
+      }
+    }
+
+    // 페이지네이션 스타일
+    .swiper-pagination {
+      bottom: 0 !important;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+
+      @include desktop {
+        display: none;
+      }
+
+      .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        background-color: #d1d5db;
+        opacity: 1;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+
+        &-active {
+          background-color: #045CF3;
+          width: 20px;
+          border-radius: 4px;
+        }
       }
     }
 
     .swiper-button-next,
     .swiper-button-prev {
       border-radius: 100%;
-      background-color: transparent;
+      background-color: rgba(255, 255, 255, 0.9);
       width: 40px;
       height: 40px;
-      color: #000;
-      display: none;
+      color: var(--accent-color);
+      display: none; // 모바일에서 기본적으로 숨김
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      opacity: 1;
+      visibility: visible;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+
+      // 데스크톱에서만 표시
+      @include desktop {
+        display: flex;
+      }
 
       &:after {
         display: none;
       }
 
-      @include qhd {
-        display: flex;
+      .c-swiper-nav-arrow {
+        width: 20px;
+        height: 20px;
+        display: block;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      &.swiper-button-disabled {
+        opacity: 0.35;
+        cursor: auto;
+        pointer-events: none;
       }
     }
 
     .swiper-button-next {
-      right: -60px;
+      right: 10px;
 
-      svg {
+      @include desktop {
+        right: -60px;
+      }
+
+      .c-swiper-nav-arrow {
         margin-left: 3px;
       }
     }
 
     .swiper-button-prev {
-      left: -60px;
+      left: 10px;
 
-      svg {
+      @include desktop {
+        left: -60px;
+      }
+
+      .c-swiper-nav-arrow {
         margin-right: 3px;
       }
     }
@@ -134,9 +222,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px 0 46px 0;
+      padding: $space-16 0 $space-32 0;
 
-
+      @include mq($from: tablet) { padding: 24px 0 46px 0; }
       @include desktop { padding: 46px 0; }
     }
   }

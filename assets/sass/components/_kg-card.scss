@@ -4,6 +4,13 @@
 
 // Koenig Editor
 
+
+.kg-bookmark-card {
+  a.kg-bookmark-container {
+    border: 1px solid #c4c4c4;
+  }
+}
+
 .kg-embed-card {
   display: flex;
   align-items: center;
@@ -18,18 +25,29 @@
   width: 100%;
   text-align: center;
   padding: $space-16;
-  color: var(--color-gray);
-  font-size: $type-sm;
-  line-height: $type-sm-lh;
-  font-weight: $type-600;
-  letter-spacing: $global-letter-spacing;
-  background-color: var(--bg-gray);
+  font-size: $type-xs;
+  line-height: $type-xs-lh;
+  font-weight: $type-500;
+  color: var(--color-text-secondary);
+  background-color: var(--background-primary);
 }
 
-// Koenig Images
+.kg-image-card {
+  min-width: min-content;
+  background-color: var(--background-secondary);
+}
 
-.kg-image {
-  margin: auto;
+.kg-width-wide {
+  width: 100%;
+
+  .kg-image {
+    width: 100%;
+  }
+
+  @include mq($from: desktop) {
+    width: 100vw;
+    max-width: $grid-width - $space-80;
+  }
 }
 
 .kg-width-full .kg-image {
@@ -39,13 +57,8 @@
   }
 }
 
-.kg-width-wide {
-  @include mq($from: desktop) {
-    width: 100vw;
-    max-width: $grid-width;
-    padding-left: $grid-outer-gutter + $grid-column-large-gutter;
-    padding-right: $grid-outer-gutter + $grid-column-large-gutter;
-  }
+.kg-image {
+  margin: auto;
 }
 
 // Twitter Card
@@ -55,18 +68,10 @@
   margin-bottom: 0 !important;
   overflow: hidden !important;
   width: 100% !important;
-
-  + script + figcaption {
-    background-color: var(--bg-color);
-  }
 }
 
 // Instagram Card
 
 .instagram-media {
   margin-bottom: 0 !important;
-
-  + script + figcaption {
-    background-color: var(--bg-color);
-  }
 }

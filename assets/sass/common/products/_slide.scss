@@ -54,17 +54,17 @@
         display: none;
       }
 
-      svg {
+      .c-swiper-nav-arrow {
         display: block;
-        width: 18px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
       }
 
-      &-prev svg {
+      &-prev .c-swiper-nav-arrow {
         margin-right: 2px;
       }
 
-      &-next svg {
+      &-next .c-swiper-nav-arrow {
         margin-left: 2px;
       }
     }

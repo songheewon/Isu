@@ -1,23 +1,23 @@
 {{!< default}}
 
-<div class='o-wrapper'>
-  {{> hero }}
+{{#contentFor 'title'}}{{t 'Blog' }}{{/contentFor}}
 
-  <div class='o-grid'>
-    <div class='o-grid__col o-grid__col--full'>
-      <div class='c-title-bar'>
-        <h3 class='c-title-bar__title'>{{t 'Latest Episodes'}}</h3>
-      </div>
+<div class='o-grid'>
+  <div class='o-grid__col o-grid__col--4-4-s'>
+    <div class='c-archive'>
+      <h1 class='c-archive__title'>Blog</h1>
     </div>
   </div>
+</div>
 
-  <div class='o-grid js-grid c-loop'>
-    {{> loop }}
+<div class='o-grid'>
+  <div class='o-grid__col o-grid__col--4-4-s'>
+    <div class="c-post-grid">
+      {{> loop }}
+    </div>
   </div>
+</div>
 
-  <div class='o-grid'>
-    {{ pagination }}
-  </div>
-
-  {{> shop }}
+<div class='o-grid'>
+  {{ pagination }}
 </div>

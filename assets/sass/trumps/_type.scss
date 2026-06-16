@@ -4,6 +4,11 @@
 
 // Font Size
 
+.u-type-lg {
+  font-size: $type-lg;
+  line-height: $type-lg-lh;
+}
+
 .u-type-sm {
   font-size: $type-sm;
   line-height: $type-sm-lh;
@@ -16,6 +21,10 @@
 
 // Font Weight
 
+.u-type-400 {
+  font-weight: $type-400;
+}
+
 .u-type-500 {
   font-weight: $type-500;
 }
@@ -26,4 +35,8 @@
 
 .u-type-uppercase {
   text-transform: uppercase;
+}
+
+.u-type-italic {
+  font-style: italic;
 }

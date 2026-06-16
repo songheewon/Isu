@@ -8,6 +8,18 @@
   &__outer {
     background-color: #f6f5f7;
     padding: 40px 0 80px;
+    @include mq($until: desktop) {
+      margin-top: 200px !important;
+    }
+  }
+
+  &__identity--name {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: #0a142f;
   }
 
   &__logo {
@@ -97,5 +109,65 @@
       font-weight: 700;
       color: #0a142f;
     }
+  }
+
+  &__navigations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 74px;
+    margin-top: 90px;
+
+    @include mq($from: landscape) {
+      margin-top: 0;
+      gap: 120px;
+    }
+  }
+
+  &__nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top: 26px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+
+    li, a {
+      font-size: 13px;
+      font-weight: 500;
+      color: #0a142f !important;
+      opacity: .7;
+      background-color: none !important;
+    }
+
+    li {
+      margin: 0;
+    }
+
+    a {
+      display: inline-block;
+      line-height: 1;
+
+      @include attention() {
+        color: #0a142f !important;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+
+    &--title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0a142f;
+    }
+  }
+}
+
+// 하단 광고가 있을 때 footer margin 제거
+.mobile-ad + .o-footer .s-common-default-footer__outer {
+  @include mq($until: desktop) {
+    margin-top: 0 !important;
   }
 }

@@ -1,0 +1,39 @@
+{{!--
+  홈 태그 피드 첫번째 카테고리 상단 hero
+  → home/featured-second 의 카드 마크업과 동일한 클래스/구조 사용 (스타일 재사용)
+--}}
+<article class="c-home-featured-second__card">
+  <div class="c-home-featured-second__media">
+    {{#if feature_image}}
+    <a href="{{url}}" class="c-home-featured-second__media-link">
+      <img
+        class="c-home-featured-second__image lazyload"
+        src="{{img_url feature_image}}"
+        alt="{{title}}"
+      />
+    </a>
+    {{else}}
+    <div class="c-home-featured-second__media-link c-home-featured-second__media--empty" aria-hidden="true"></div>
+    {{/if}}
+  </div>
+  <div class="c-home-featured-second__body">
+    {{#if primary_tag}}
+    <p class="c-home-featured-second__category">
+      <a href="{{primary_tag.url}}">{{primary_tag.name}}</a>
+    </p>
+    {{else if tags}}
+    {{#foreach tags limit="1"}}
+    <p class="c-home-featured-second__category">
+      <a href="{{url}}">{{name}}</a>
+    </p>
+    {{/foreach}}
+    {{/if}}
+    <h2 class="c-home-featured-second__title">
+      <a href="{{url}}">{{title}}</a>
+    </h2>
+    {{#if excerpt}}
+    <p class="c-home-featured-second__excerpt">{{excerpt words="48"}}</p>
+    {{/if}}
+    <a href="{{url}}" class="c-home-featured-second__btn">자세히 보기</a>
+  </div>
+</article>

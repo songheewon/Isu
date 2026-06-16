@@ -1,0 +1,51 @@
+<section class="c-home-rankings" aria-label="인기 콘텐츠와 최근 올라온 콘텐츠">
+  <div class="o-container o-container--fluid o-container--fluid-balanced">
+    <div class="c-home-rankings__grid">
+      <aside class="c-home-rankings__col c-home-rankings__col--popular">
+        <div class="c-home-rankings__heading">인기 콘텐츠</div>
+        {{#get "posts" limit="5" order="view_count desc" include="tags,authors"}}
+        {{#if posts}}
+        <ol class="c-home-rankings__list">
+          {{#foreach posts}}
+          <li class="c-home-rankings__item">
+            <a href="{{url}}" class="c-home-rankings__link">{{title}}</a>
+          </li>
+          {{/foreach}}
+        </ol>
+        {{/if}}
+        {{/get}}
+
+        <div class="c-home-rankings__tags">
+          <h3 class="c-home-rankings__tags-title">인기 태그</h3>
+          {{#get "tags" limit="18" order="count.posts desc"}}
+          {{#if tags}}
+          <div class="c-home-rankings__tags-inner">
+            {{#foreach tags}}
+            <a href="{{url}}" class="c-home-rankings__tag">{{name}}</a>
+            {{/foreach}}
+          </div>
+          {{/if}}
+          {{/get}}
+        </div>
+      </aside>
+
+      <div class="c-home-rankings__col c-home-rankings__col--recent">
+        <div class="c-home-rankings__heading">최근 올라온 콘텐츠</div>
+        {{#get "posts" limit="5" order="published_at desc" include="tags,authors"}}
+        {{#if posts}}
+        <div class="c-home-rankings__cards js-home-rankings-append">
+          {{#foreach posts}}
+          {{> home/rankings-card}}
+          {{/foreach}}
+        </div>
+        {{/if}}
+        {{/get}}
+        {{#if pagination.next}}
+        <div class="c-home-rankings__more">
+          {{> pagination-button}}
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</section>

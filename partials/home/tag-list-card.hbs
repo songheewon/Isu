@@ -1,0 +1,53 @@
+{{!-- 태그 페이지 본문 리스트용 가로형 카드 (좌: 카테고리/제목/요약/작성자, 우: 썸네일) --}}
+<article class="js-post-card__wrap c-tag-list-card" data-post-id="{{id}}">
+  <a href="{{url}}" class="c-tag-list-card__link">
+    <div class="c-tag-list-card__body">
+      {{#if primary_tag}}
+      <p class="c-tag-list-card__category">{{primary_tag.name}}</p>
+      {{else if tags}}
+      {{#foreach tags limit="1"}}
+      <p class="c-tag-list-card__category">{{name}}</p>
+      {{/foreach}}
+      {{/if}}
+
+      <h3 class="c-tag-list-card__title">{{title}}</h3>
+
+      {{#if custom_excerpt}}
+      <p class="c-tag-list-card__excerpt">{{custom_excerpt}}</p>
+      {{else if excerpt}}
+      <p class="c-tag-list-card__excerpt">{{excerpt words="40"}}</p>
+      {{/if}}
+
+      {{#primary_author}}
+      <div class="c-tag-list-card__author">
+        {{#if profile_image}}
+        <img
+          class="c-tag-list-card__avatar lazyload"
+          src="{{img_url profile_image size="xs"}}"
+          alt=""
+          width="24"
+          height="24"
+        />
+        {{else}}
+        <span class="c-tag-list-card__avatar c-tag-list-card__avatar--empty" aria-hidden="true">
+          {{> icons/user-profile}}
+        </span>
+        {{/if}}
+        <span class="c-tag-list-card__author-name">{{name}}</span>
+      </div>
+      {{/primary_author}}
+    </div>
+
+    {{#if feature_image}}
+    <div class="c-tag-list-card__media">
+      <img
+        class="c-tag-list-card__img lazyload"
+        src="{{img_url feature_image size="m"}}"
+        alt=""
+      />
+    </div>
+    {{else}}
+    <div class="c-tag-list-card__media c-tag-list-card__media--empty" aria-hidden="true"></div>
+    {{/if}}
+  </a>
+</article>

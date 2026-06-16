@@ -1,0 +1,17 @@
+/* Swiper / 캐러셀 공통 화살표 — partials/icons/swiper-nav-arrow.hbs (색: 부모 color → 보통 var(--accent-color)) */
+.c-swiper-nav-arrow {
+  display: block;
+  width: 29px;
+  height: 29px;
+  flex-shrink: 0;
+}
+
+.swiper-button-prev .c-swiper-nav-arrow {
+  transform: scaleX(-1);
+  transform-origin: 50% 50%;
+}
+
+.c-home-recommended__btn--prev .c-swiper-nav-arrow {
+  transform: scaleX(-1);
+  transform-origin: 50% 50%;
+}

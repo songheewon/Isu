@@ -6,29 +6,19 @@
   display: flex;
 
   &__item {
-    flex: 1;
-    text-align: center;
-
     &:not(:last-child) {
-      border-right: $space-8 solid var(--bg-color);
-
-      @include mq($from: tablet) {
-        border-right-width: $space-16;
-      }
+      margin-right: $space-8;
     }
   }
 
   &__link {
-    display: block;
-    line-height: $type-xs-lh;
-    padding: half($space-8)$space-8;
-    border-radius: $global-border-radius;
-    background-color: var(--bg-gray);
-    transition: $global-transition;
-
-    @include mq($from: tablet) {
-      padding: $space-8 $space-24;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $space-40;
+    height: $space-40;
+    border-radius: 100%;
+    border: 1px solid var(--color-border);
 
     @include attention() {
       opacity: .8;
@@ -36,7 +26,6 @@
   }
 
   &__icon {
-    fill: var(--color-text);
-    vertical-align: middle;
+    fill: var(--color-text-primary);
   }
 }

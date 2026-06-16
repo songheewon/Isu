@@ -1,0 +1,31 @@
+{{!-- Bluedot: navigation을 한 번 출력해야 foreach navigation 이 동작하는 경우(숍 product_categories와 동일 패턴) --}}
+<ul class="u-hidden-visually" aria-hidden="true">{{navigation}}</ul>
+{{!-- Ghost Primary navigation: 상위 + children 드롭다운 (관리자 네비 설정) --}}
+<ul class="c-nav c-nav--header-categories o-plain-list" role="menubar">
+  {{#foreach navigation}}
+  <li
+    class="c-nav__item c-nav__item--header-cat{{#if children}} c-nav__item--has-children{{/if}}{{#if current}} is-current{{/if}}"
+    role="none"
+  >
+    <div class="c-nav__item-head">
+      <a href="{{url absolute='true'}}" class="c-nav__link c-nav__link--header-cat" role="menuitem">{{label}}</a>
+      {{#if children}}
+      <span class="c-nav__chevron" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none" focusable="false">
+          <path d="M2.5 3.75L5 6.25L7.5 3.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </span>
+      {{/if}}
+    </div>
+    {{#if children}}
+    <ul class="c-nav__dropdown o-plain-list" role="menu">
+      {{#foreach children}}
+      <li class="c-nav__dropdown__item{{#if current}} is-current{{/if}}" role="none">
+        <a href="{{url absolute='true'}}" class="c-nav__dropdown__link" role="menuitem"><span class="c-nav__dropdown__label">{{label}}</span></a>
+      </li>
+      {{/foreach}}
+    </ul>
+    {{/if}}
+  </li>
+  {{/foreach}}
+</ul>

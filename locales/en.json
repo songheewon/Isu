@@ -1,14 +1,13 @@
 {
-  "Loading": "Loading",
-  "Load More": "Load More",
+  "Skip to content": "Skip to content",
 
-  "Latest Episodes": "Latest Episodes",
-  "Featured Post": "Featured Post",
+  "Loading": "Loading",
+  "More Posts ↓": "More Posts ↓",
+  "All Posts →": "All Posts →",
+
+  "Recent Posts": "Recent Posts",
+  "Featured Posts": "Featured Posts",
   "Page Not Found": "Page Not Found",
-  "Load Comments": "Load Comments",
-  "You might also like": "You might also like",
-  "Tags": "Tags",
-  "Authors": "Authors",
   "Published with {ghostLink} & {themeLink}": "Published with {ghostLink} & {themeLink}",
 
   "Share on Twitter": "Share on Twitter",
@@ -19,9 +18,10 @@
   "Copy link": "Copy link",
   "Link copied to clipboard": "Link copied to clipboard",
 
-  "Search": "Search",
-  "Search {siteTitle}": "Search {siteTitle}",
-  "Type to Search": "Type to Search",
+  "Archive": "Archive",
+  "Tags": "Tags",
+  "1 min read": "1 min read",
+  "% min read": "% min read",
 
   "Paid": "Paid",
   "Members": "Members",
@@ -32,9 +32,14 @@
   "Log out": "Log out",
   "Continue": "Continue",
   "Subscribe": "Subscribe",
-  "Subscribe Now": "Subscribe Now",
-  "Free Subscribe": "Email Subscribe",
+  "Membership": "Membership",
+  "Subscription Plans": "Subscription Plans",
   "Your email address": "Your email address",
+  "Newsletter subscribe label": "Newsletter subscribe",
+  "Subscribe banner headline": "Subscribe to the newsletter and receive updates!",
+  "Please enter your email": "Please enter your email.",
+  "Newsletter subscribe button": "Subscribe to newsletter",
+  "{siteTitle} Newsletter": "{siteTitle} Newsletter",
   "Please check your inbox and click the link to complete the login.": "Please check your inbox and click the link to complete the login.",
   "Please check your inbox and click the link to confirm your subscription.": "Please check your inbox and click the link to confirm your subscription.",
   "Please enter a valid email address!": "Please enter a valid email address!",
@@ -43,25 +48,19 @@
   "Already have an account?": "Already have an account?",
   "Don't have an account yet?": "Don't have an account yet?",
 
-  "This page is for paying subscribers only": "This page is for paying subscribers only",
-  "This page is for subscribers only": "This page is for subscribers only",
-
+  "This Content Is for Members": "This Content Is for Members",
+  "This Content Is for Paid Members": "This Content Is for Paid Members",
   "Become a subscriber to access all of our content.": "Become a subscriber to access all of our content.",
 
-  "Choose your subscription": "Choose your subscription",
-  "Unlock full access to {siteTitle} and see the entire library of members-only content & updates.": "Unlock full access to {siteTitle} and see the entire library of members-only content & updates.",
+  "Premium Membership": "Premium Membership",
+  "Unlock full access to {siteTitle} and see the entire library of members-only content.": "Unlock full access to {siteTitle} and see the entire library of members-only content.",
   "Subscribe to {siteTitle}": "Subscribe to {siteTitle}",
-  "Choose this plan": "Choose this plan",
   "Monthly": "Monthly",
   "Yearly": "Yearly",
-  "month": "month",
-  "year": "year",
 
-  "Welcome back!": "Welcome back!",
-  "Log in to your account again.": "Log in to your account again.",
+  "Log in to {siteTitle}": "Log in to {siteTitle}",
   "Send login link": "Send login link",
 
-  "Nice, you're a subscriber!": "Nice, you're a subscriber!",
   "Your subscription will expire on": "Your subscription will expire on",
   "Your plan": "Your plan",
   "Card": "Card",
@@ -69,6 +68,5 @@
   "Next bill date": "Next bill date",
   "Edit billing info": "Edit billing info",
   "You have an active {siteTitle} account with access to all posts.": "You have an active {siteTitle} account with access to all posts.",
-  "You're a subscriber to free members updates": "You're a subscriber to free members updates",
   "You are subscribed to free updates from {siteTitle}, but don't have a paid subscription to read all the posts.": "You are subscribed to free updates from {siteTitle}, but don't have a paid subscription to read all the posts."
 }

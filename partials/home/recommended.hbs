@@ -1,0 +1,93 @@
+{{#get "posts" include="tags,authors" limit="9" order="published_at desc"}}
+{{#if posts}}
+<section class="c-home-recommended" data-home-recommended>
+  <div class="o-container o-container--fluid">
+    <div class="c-home-recommended__heading">추천 콘텐츠</div>
+  </div>
+  <div class="c-home-recommended__swiper-bleed">
+    <div class="c-home-recommended__swiper-wrap">
+      <div class="swiper c-home-recommended-swiper">
+        <div class="swiper-wrapper">
+          {{#foreach posts}}
+          {{#unless @first}}
+          <div class="swiper-slide">
+            {{> home/recommended-card}}
+          </div>
+          {{/unless}}
+          {{/foreach}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="o-container o-container--fluid o-container--fluid-balanced c-home-recommended__append-outer">
+    <div class="c-home-recommended__append js-home-recommended-append" aria-live="polite"></div>
+  </div>
+  <div class="o-container o-container--fluid o-container--fluid-balanced">
+    <div class="c-home-recommended__nav" aria-label="추천 콘텐츠 슬라이드">
+      <button type="button" class="c-home-recommended__btn c-home-recommended__btn--prev" aria-label="이전">
+        {{> icons/swiper-nav-arrow}}
+      </button>
+      <button type="button" class="c-home-recommended__btn c-home-recommended__btn--next" aria-label="다음">
+        {{> icons/swiper-nav-arrow}}
+      </button>
+    </div>
+    {{#if homePagination.next}}
+    <div class="c-home-recommended__more">
+      <button type="button" class="c-btn c-btn--outline c-btn--rounded c-btn--full js-load-posts" data-load-append="home-recommended">더보기</button>
+    </div>
+    {{/if}}
+  </div>
+</section>
+{{/if}}
+{{/get}}
+
+{{#contentFor "scripts"}}
+<script>
+(function () {
+  var root = document.querySelector('[data-home-recommended]');
+  if (!root) return;
+  var swiperEl = root.querySelector('.c-home-recommended-swiper');
+  var slides = root.querySelectorAll('.c-home-recommended-swiper .swiper-slide');
+  if (!swiperEl || slides.length === 0) {
+    root.style.display = 'none';
+    return;
+  }
+  if (typeof Swiper === 'undefined') return;
+
+  var swiperInstance = null;
+  var mq = window.matchMedia('(min-width: 640px)');
+
+  function syncSwiper() {
+    if (mq.matches) {
+      if (swiperInstance) return;
+      swiperInstance = new Swiper(swiperEl, {
+        slidesPerView: 1.15,
+        spaceBetween: 16,
+        watchOverflow: true,
+        breakpoints: {
+          480: { slidesPerView: 1.35, spaceBetween: 16 },
+          640: { slidesPerView: 2, spaceBetween: 16 },
+          900: { slidesPerView: 2.5, spaceBetween: 20 },
+          1100: { slidesPerView: 3, spaceBetween: 20 },
+          1320: { slidesPerView: 3.5, spaceBetween: 24 }
+        },
+        navigation: {
+          nextEl: root.querySelector('.c-home-recommended__btn--next'),
+          prevEl: root.querySelector('.c-home-recommended__btn--prev')
+        }
+      });
+    } else if (swiperInstance) {
+      swiperInstance.destroy(true, true);
+      swiperInstance = null;
+    }
+  }
+
+  syncSwiper();
+  if (mq.addEventListener) {
+    mq.addEventListener('change', syncSwiper);
+  } else {
+    mq.addListener(syncSwiper);
+  }
+})();
+</script>
+{{/contentFor}}

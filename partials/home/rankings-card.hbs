@@ -1,0 +1,50 @@
+<article class="c-home-rankings-card">
+  <div class="c-home-rankings-card__body">
+    {{#if primary_tag}}
+    <p class="c-home-rankings-card__category">
+      <a href="{{primary_tag.url}}">{{primary_tag.name}}</a>
+    </p>
+    {{else if tags}}
+    {{#foreach tags limit="1"}}
+    <p class="c-home-rankings-card__category">
+      <a href="{{url}}">{{name}}</a>
+    </p>
+    {{/foreach}}
+    {{/if}}
+    <h3 class="c-home-rankings-card__title">
+      <a href="{{url}}">{{title}}</a>
+    </h3>
+    {{#if excerpt}}
+    <p class="c-home-rankings-card__excerpt">{{excerpt words="28"}}</p>
+    {{/if}}
+    <div class="c-home-rankings-card__meta">
+      {{#primary_author}}
+      <a href="{{url}}" class="c-home-rankings-card__author">
+        {{#if profile_image}}
+        <img
+          class="c-home-rankings-card__avatar lazyload"
+          src="{{img_url profile_image}}"
+          alt=""
+        />
+        {{else}}
+        <span class="c-home-rankings-card__avatar c-home-rankings-card__avatar--empty" aria-hidden="true">
+          {{> icons/user-profile}}
+        </span>
+        {{/if}}
+        <span class="c-home-rankings-card__author-name">{{name}}</span>
+      </a>
+      {{/primary_author}}
+    </div>
+  </div>
+  <a href="{{url}}" class="c-home-rankings-card__thumb">
+    {{#if feature_image}}
+    <img
+      class="c-home-rankings-card__img lazyload"
+      src="{{img_url feature_image}}"
+      alt="{{title}}"
+    />
+    {{else}}
+    <span class="c-home-rankings-card__thumb--empty" aria-hidden="true"></span>
+    {{/if}}
+  </a>
+</article>

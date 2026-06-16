@@ -1,26 +1,28 @@
 {{!< default}}
 
+{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
+
 {{#post}}
 
-<main class='o-wrapper'>
-  <article>
-    {{> post-hero }}
+<div class='o-grid'>
+  <div class='o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--2-3-l'>
+    <article class='c-{{ post_class }}'>
+      {{> post-header }}
 
-    <div class='o-grid'>
-      <div class='o-grid__col o-grid__col--center o-grid__col--4-4-s'>
-        <div class='c-{{ post_class }}'>
-          <div class='c-content'>
-            {{ content }}
-          </div>
+      {{#if access}}
+      <section class='c-content'>
+        {{ content }}
+      </section>
 
-          {{!-- If the page is published for members and paid members and the visitor is not one of those, show the upgrade box --}}
-          {{#unless access}}
-            {{> page-upgrade-cta }}
-          {{/unless}}
-        </div>
-      </div>
-    </div>
-  </article>
-</main>
+      {{else}}
+          <!-- from bluedot -->
+          {{bluedot_paywall}}
+      {{/if}}
+      <hr>
+    </article>
+  </div>
+</div>
+
+{{bluedot_paywall_popup}}
 
 {{/post}}

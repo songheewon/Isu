@@ -2,52 +2,50 @@
   Components > Subscribe Form
 \*------------------------------------*/
 
-.c-subscribe-form {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  width: 100%;
+.c-subscribe {
+  position: relative;
+  overflow: hidden;
+  padding: $space-32;
+  border-radius: $space-4;
+  background-color: var(--background-secondary);
 
   @include mq($from: tablet) {
-    width: fit-content;
+    padding: $space-64;
   }
 
-  &--center {
-    margin: 0 auto;
+  @include mq($from: desktop) {
+    padding: $space-96;
   }
 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    padding: half($space-8);
-    border-radius: $global-border-radius;
-    background-color: var(--bg-color);
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 540px;
+    margin: auto;
+  }
 
-    @include mq($from: tablet) {
-      flex-direction: row;
+  &__heading {
+    font-size: $type--h-xs;
+    line-height: $type--h-xs-lh;
+  }
+
+  &__icon {
+    position: absolute;
+    top: -141px;
+    right: -121px;
+
+    svg {
+      fill: var(--background-primary);
     }
   }
+}
 
-  &__btn {
-    flex: 3;
+.c-subscribe-form {
+  &__wrap {
+    padding-bottom: 40px;
   }
 
-  &__input[type='email'] {
-    border: 0;
-    margin: 0;
-    min-width: 1px; // Firefox issue: https://stackoverflow.com/a/27460682/558777
-    background-color: var(--bg-color);
-
-    @include mq($until: tablet) {
-      padding: $space-16;
-    }
-
-    &:focus {
-      border-color: transparent;
-    }
-  }
-
-  .u-alert {
+  .c-alert {
     display: none;
   }
 
@@ -65,9 +63,287 @@
     }
   }
 
-  &.success .u-alert--success,
-  &.invalid .u-alert--invalid,
-  &.error   .u-alert--error  {
+  &.success .c-alert--success,
+  &.invalid .c-alert--invalid,
+  &.error   .c-alert--error  {
     display: block;
+  }
+
+  &__input {
+    min-width: 350px;
+  }
+}
+
+.c-form-group {
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+  }
+
+  @include mq($from: tablet) {
+    display: flex;
+  }
+
+  &__btn {
+    @include mq($until: tablet) {
+      width: 100%;
+    }
+
+    @include mq($from: tablet) {
+      flex: 3;
+      margin-left: $space-16;
+    }
+  }
+
+  .c-form-group__input {
+    border-radius: 0;
+    border: 1px solid #000;
+    background-color: #f5f5f5;
+
+    @include mq($until: tablet) {
+      margin-bottom: $space-16;
+    }
+  }
+}
+
+
+/* 홈/글 하단: 뉴스레터 배너 — 배경은 assets/images/subscribe-banner-bg.svg */
+.c-subscribe-banner {
+  padding: $space-24 0 $space-32;
+
+  @include mq($from: tablet) {
+    padding: $space-32 0 $space-40;
+  }
+
+  &__box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: $space-40 $space-24;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #eef6ff;
+    background-image: var(--subscribe-banner-bg, url('../images/subscribe-banner-bg.svg'));
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    @include mq($from: tablet) {
+      padding: $space-48 $space-40;
+    }
+  }
+
+  &__text {
+    position: relative;
+    z-index: 1;
+    max-width: 36rem;
+    margin-bottom: $space-24;
+  }
+
+  &__eyebrow {
+    margin: 0 0 $space-8;
+    font-size: 13px;
+    font-weight: 700;
+    color: #2563eb;
+    letter-spacing: -0.02em;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.45;
+    letter-spacing: -0.03em;
+
+    @include mq($from: tablet) {
+      font-size: 26px;
+    }
+  }
+
+  &__form {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 40rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: $space-16;
+
+    &.loading .c-subscribe-banner__submit {
+      opacity: 0.65;
+      pointer-events: none;
+    }
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: $space-16;
+    width: 100%;
+
+    @include mq($from: tablet) {
+      flex-direction: row;
+      align-items: center;
+      gap: $space-16;
+    }
+  }
+
+  &__input {
+    flex: 1;
+    min-width: 0;
+    height: 48px;
+    padding: 0 $space-16;
+    border: 0;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1a1a1a;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+
+    &:focus {
+      outline: 2px solid #2563eb;
+      outline-offset: 0;
+    }
+  }
+
+  &__submit {
+    flex-shrink: 0;
+    height: 48px;
+    padding: 0 $space-24;
+    border: 0;
+    border-radius: 8px;
+    background-color: #000;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus-visible {
+      background-color: #333;
+    }
+  }
+}
+
+
+.c-subscribe__g {
+  margin-bottom: 60px;
+  padding: 32px 16px;
+
+  border-top: 1px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+
+  @include mq($from: tablet) {
+    display: flex;
+    gap: 32px;
+    padding: 32px 0;
+  }
+
+  &--side {
+    @include mq($from: tablet) {
+      flex-grow: 1;
+    }
+  }
+
+  &--label {
+    display: none;
+    color: #3c7eff;
+    font-size: 11px;
+    font-weight: 700;
+
+    @include mq($from: tablet) {
+      display: block;
+    }
+  }
+
+  &--title {
+    max-width: 300px;
+    margin: 0 auto;
+    font-size: 20px;
+    font-weight: 800;
+    font-family: 'Nanum Myeongjo', serif;
+    line-height: 1.5;
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin-bottom: 30px;
+
+    @include mq($from: tablet) {
+      margin-bottom: 0;
+      font-size: 14px;
+      text-align: start;
+    }
+  }
+
+  &--form {
+    max-width: 768px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+
+    @include mq($from: tablet) {
+      flex-wrap: nowrap;
+    }
+
+    &-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .c-subscribe__g--form-input {
+      max-width: 300px;
+      width: 100%;
+      border: 1px solid #000;
+      border-radius: 0;
+      background-color: #f5f5f5;
+      font-size: 14px;
+      font-weight: 500;
+
+      height: 45px;
+      display: flex;
+      align-items: center;
+      padding-top: 0;
+      padding-bottom: 0;
+
+      @include mq($from: tablet) {
+        width: 350px;
+      }
+    }
+
+    .c-subscribe__g--form-submit {
+      height: 45px;
+      min-width: 90px;
+      padding: 0 24px;
+      background-color: #000;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all ease 0.3s;
+
+      &:hover {
+        background-color: #464646;
+        border-color: #464646;;
+      }
+    }
+
+    
   }
 }

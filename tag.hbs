@@ -1,24 +1,54 @@
 {{!< default}}
 
-<div class='o-wrapper'>
-  {{#tag}}
-    <div class='c-archive'>
-      <div class='o-grid'>
-        <div class='o-grid__col o-grid__col--center o-grid__col--4-4-s o-grid__col--3-4-m o-grid__col--2-4-l'>
-          <h1 class='c-archive__title'>{{ name }}</h1>
-          {{#if description}}
-            <p class='c-archive__description'>{{ description }}</p>
-          {{/if}}
-        </div>
+{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
+
+<section class="c-tag-archive">
+  <div class="o-container o-container--fluid o-container--fluid-balanced">
+
+    {{!-- 태그 제목 / 설명 --}}
+    {{#tag}}
+    <header class="c-tag-archive__header">
+      <h1 class="c-tag-archive__title">{{ name }}</h1>
+      {{#if description}}
+      <p class="c-tag-archive__description">{{ description }}</p>
+      {{/if}}
+    </header>
+
+    {{!-- 추천 아티클 (해당 태그의 featured 글 최대 3개) --}}
+    {{#get "posts" filter="tag:{{slug}}+featured:true" include="tags,authors" limit="3" order="published_at desc" as |featuredPosts|}}
+    {{#if featuredPosts}}
+    <div class="c-tag-archive__featured">
+      <h2 class="c-tag-archive__subheading">추천 아티클</h2>
+      <div class="c-tag-archive__featured-grid">
+        {{#foreach featuredPosts}}
+        {{> home/recommended-card}}
+        {{/foreach}}
       </div>
     </div>
-  {{/tag}}
+    {{/if}}
+    {{/get}}
+    {{/tag}}
 
-  <div class='o-grid js-grid c-loop'>
-    {{> loop }}
-  </div>
+    {{!-- 전체 글 목록 (라우트 context의 posts 사용) --}}
+    <div class="c-tag-archive__list js-grid">
+      {{#foreach posts}}
+      {{> home/tag-list-card}}
+      {{/foreach}}
+    </div>
 
-  <div class='o-grid'>
-    {{ pagination }}
+    {{!-- 더보기 버튼 (home.hbs 와 동일: pagination-button 파셜 사용) --}}
+    {{#if pagination.next}}
+    <div class="c-tag-archive__more">
+      {{> pagination-button}}
+    </div>
+    {{/if}}
+
   </div>
+</section>
+
+{{!-- 홈 태그 섹션 Ajax 더보기: 동일 카드 마크업 파싱용 (home/tag-card 유지) --}}
+<div class="js-tag-feed-fetch-source" hidden aria-hidden="true">
+  {{#foreach posts}}
+    {{> home/tag-card}}
+  {{/foreach}}
 </div>

@@ -1,0 +1,21 @@
+<article class="c-home-tag-card" data-post-id="{{id}}">
+  <a href="{{url}}" class="c-home-tag-card__link">
+    <div class="c-home-tag-card__body">
+      <h3 class="c-home-tag-card__title">{{title}}</h3>
+      {{#if excerpt}}
+      <p class="c-home-tag-card__excerpt">{{excerpt words="40"}}</p>
+      {{/if}}
+    </div>
+    {{#if feature_image}}
+    <div class="c-home-tag-card__media">
+      <img
+        class="c-home-tag-card__img lazyload"
+        src="{{img_url feature_image}}"
+        alt=""
+      />
+    </div>
+    {{else}}
+    <div class="c-home-tag-card__media c-home-tag-card__media--empty" aria-hidden="true"></div>
+    {{/if}}
+  </a>
+</article>

@@ -1,0 +1,260 @@
+/*------------------------------------*\
+  Components > Author profile (custom-author.hbs)
+\*------------------------------------*/
+
+$author-body-bg: #f3f6f9;
+$author-banner-height: 360px;
+$author-photo-size: 440px;
+
+.c-author-profile {
+  position: relative;
+  margin: 0;
+  padding: 0;
+
+  @include mq($from: tablet) {
+    margin-top: -40px;
+  }
+  &--no-photo {
+    .c-author-profile__banner {
+      height: 120px;
+    }
+
+    .c-author-profile__body {
+      padding-top: 48px;
+
+      @include mq($from: tablet) {
+        padding-top: 56px;
+      }
+    }
+  }
+}
+
+.c-author-profile__banner {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  height: $author-banner-height;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
+  overflow: visible;
+  background-color: var(--accent-color);
+}
+
+/* 블러 배경만 잘라내고, 프로필 원은 배너 밖으로 나와도 보이게 */
+.c-author-profile__banner-scrim {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.c-author-profile__banner-bg {
+  position: absolute;
+  inset: -20%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(36px);
+  transform: scale(1.2);
+  /* 사진이 또렷이 비치도록 높게 — 위 accent 오버레이로 톤만 입힘 */
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.c-author-profile__banner-overlay {
+  position: absolute;
+  inset: 0;
+  /* 가운데는 사진이 비치고, 가장자리로 갈수록 accent 로 덮임 */
+  background: radial-gradient(
+    ellipse 60% 90% at 50% 50%,
+    color-mix(in srgb, var(--accent-color) 8%, transparent) 0%,
+    color-mix(in srgb, var(--accent-color) 30%, transparent) 45%,
+    color-mix(in srgb, var(--accent-color) 62%, transparent) 80%,
+    var(--accent-color) 100%
+  );
+  pointer-events: none;
+}
+
+.c-author-profile__banner-inner {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  /* 원 중심이 배너 하단(흰 배경과의 경계)에 오도록 — 위 절반은 남색, 아래 절반은 본문 위로 */
+  transform: translate(-50%, 50%);
+}
+
+.c-author-profile__photo {
+  width: $author-photo-size;
+  height: $author-photo-size;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #e8edf2;
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.22),
+    0 0 0 4px rgba(255, 255, 255, 0.12);
+
+  @include mq($until: tablet) {
+    width: min(#{$author-photo-size}, calc(100vw - 40px));
+    height: min(#{$author-photo-size}, calc(100vw - 40px));
+  }
+}
+
+.c-author-profile__photo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.c-author-profile__body {
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  /* 배너 밖으로 내려온 원 아래 절반(220px)만큼 비우고 + 여백 */
+  padding: calc(#{$author-photo-size} / 2 + 48px) 20px 72px;
+  background-color: $author-body-bg;
+  box-sizing: border-box;
+
+  @include mq($until: tablet) {
+    padding-top: calc(min(#{$author-photo-size}, calc(100vw - 40px)) / 2 + 40px);
+  }
+
+  @include mq($from: tablet) {
+    padding-bottom: 100px;
+  }
+}
+
+.c-author-profile__body-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.c-author-profile__role {
+  margin: 0 0 12px;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--accent-color);
+}
+
+.c-author-profile__name {
+  margin: 0 0 28px;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  color: #1a1d1f;
+
+  @include mq($from: tablet) {
+    font-size: 40px;
+    margin-bottom: 36px;
+  }
+}
+
+.c-author-profile__tagline {
+  margin: -12px auto 28px;
+  max-width: 640px;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: -0.01em;
+  color: #454a4d;
+  text-align: left;
+
+  @include mq($from: tablet) {
+    font-size: 17px;
+    margin-bottom: 32px;
+  }
+}
+
+.c-author-profile__bio {
+  margin: 0 auto;
+  max-width: 720px;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.85;
+  letter-spacing: -0.01em;
+  color: #2f3437;
+  text-align: left;
+
+  @include mq($from: tablet) {
+    font-size: 17px;
+  }
+
+  > p:first-child {
+    margin-top: 0;
+  }
+
+  > p:last-child {
+    margin-bottom: 0;
+  }
+
+  h2,
+  h3 {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #1a1d1f;
+    letter-spacing: -0.02em;
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+    line-height: 1.4;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: 19px;
+    font-weight: 600;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.4em;
+    margin: 1em 0;
+  }
+
+  li {
+    margin-bottom: 0.4em;
+  }
+
+  a {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(4, 92, 243, 0.25);
+    transition: border-color 0.2s ease;
+
+    @include attention() {
+      border-bottom-color: var(--accent-color);
+    }
+  }
+
+  blockquote {
+    margin: 1.6em 0;
+    padding: 0 0 0 20px;
+    border-left: 3px solid var(--accent-color);
+    color: #4b5563;
+    font-style: normal;
+  }
+}
+
+.c-author-profile__paywall {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: left;
+}

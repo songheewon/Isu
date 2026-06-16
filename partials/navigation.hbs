@@ -1,5 +1,37 @@
+{{#if isSecondary}}
+  <li class='c-nav__item'>
+    {{#link href="/" class="c-nav__link" activeClass="c-nav__link--current"}}Home{{/link}}
+  </li>
+{{/if}}
+{{#match isDrawer "=" "drawer"}}
+{{#foreach navigation}}
+  <li class="c-nav__item c-header-mobile__nav--item--container{{#if children}} c-header-mobile__nav--item--has-children{{/if}}">
+    {{#if children}}
+    <div class="c-header-mobile__nav--row">
+      <a href="{{url absolute='true'}}" class="c-nav__link c-header-mobile__nav--item">{{label}}</a>
+      <span class="c-header-mobile__nav--row-fill" aria-hidden="true"></span>
+      <button type="button" class="c-header-mobile__nav--expand" aria-expanded="false" aria-label="{{label}} 하위 메뉴">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+    </div>
+    <ul class="c-header-mobile__nav--sub o-plain-list">
+      {{#foreach children}}
+      <li class="c-header-mobile__nav--sub-item">
+        <a href="{{url absolute='true'}}" class="c-header-mobile__nav--sub-link{{#if current}} is-current{{/if}}">{{label}}</a>
+      </li>
+      {{/foreach}}
+    </ul>
+    {{else}}
+    <a href="{{url absolute='true'}}" class="c-nav__link c-header-mobile__nav--item">{{label}}</a>
+    {{/if}}
+  </li>
+{{/foreach}}
+{{else}}
 {{#foreach navigation}}
   <li class='c-nav__item'>
     <a href='{{ url absolute='true' }}' class='c-nav__link {{#if current}} c-nav__link--current {{/if}}'>{{ label }}</a>
   </li>
 {{/foreach}}
+{{/match}}

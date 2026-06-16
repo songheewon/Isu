@@ -2,7 +2,35 @@
 // Commento
 // *----------------------------------*/
 
+/* Comment */
+.blutdot-comment-wrap {
+  padding: 60px 20px;
+  margin: 0;
+}
+.blutdot-comment-wrap .bluedot-comment-button {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 360px;
+  color: #fff;
+  background: #4f4f4f;
+  border-radius: 45px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.blutdot-comment-wrap .bluedot-comment-button svg {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
 .commento-root {
+  padding: $space-32 !important;
+
   .commento-markdown-help tr td pre {
     padding: initial;
     background: transparent;

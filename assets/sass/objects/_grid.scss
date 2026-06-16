@@ -2,6 +2,38 @@
   Objects > Grid
 \*------------------------------------*/
 
+.o-container {
+  margin: 0 auto;
+  max-width: $grid-width;
+  padding: 0 $grid-outer-gutter;
+  @include mq($until: desktop) {
+    padding: 0 $grid-outer-gutter !important;
+  }
+}
+
+/* 홈 히어로·추천 — 전체 너비, 왼쪽 인셋만 / 오른쪽은 뷰포트 끝까지(썸네일·캐러셀 피크 의도), 우측은 노치 safe-area만 */
+.o-container.o-container--fluid {
+  max-width: none;
+  width: 100%;
+  box-sizing: border-box;
+  /* 모바일: 좌우 인셋 없음(노치·홈 인디케이터만 safe-area) — 카드·그리드가 화면 폭을 쓰도록 */
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+
+  /* 태블릿↑: 좌측 인셋 ≈ 5vw (콘텐츠 ~90% 폭), 데스크톱도 동일 스케일($fluid-inset-x) */
+  @include mq($from: tablet) {
+    padding-left: max(#{$fluid-inset-x}, env(safe-area-inset-left, 0px));
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+}
+
+/* fluid + 양쪽 인셋 동일(추천 캐러셀·랭킹 등) — 피처 썸네일 풀블리드용 fluid와 구분 */
+.o-container.o-container--fluid.o-container--fluid-balanced {
+  @include mq($from: tablet) {
+    padding-right: max(#{$fluid-inset-x}, env(safe-area-inset-right, 0px));
+  }
+}
+
 .o-grid {
   margin: 0 auto;
   max-width: $grid-width;
@@ -16,8 +48,13 @@
     padding: 0;
 
     @include mq($from: tablet) {
-      margin-right: - $grid-outer-gutter;
-      margin-left: - $grid-outer-gutter;
+      margin-right: - $grid-column-medium-gutter;
+      margin-left: - $grid-column-medium-gutter;
+    }
+
+    @include mq($from: desktop) {
+      margin-right: - $grid-column-large-gutter;
+      margin-left: - $grid-column-large-gutter;
     }
   }
 
@@ -38,6 +75,7 @@
   }
 
   @include mq($from: desktop) {
+    flex-grow: 1;
     padding-right: $grid-column-large-gutter;
     padding-left: $grid-column-large-gutter;
   }
@@ -87,6 +125,10 @@
       width: percentage(3 / 4);
     } // 75%;
 
+    &--9-10-m {
+      width: percentage(9 / 10);
+    } // 90%;
+
     &--4-4-m {
       width: 100%;
     }
@@ -112,14 +154,6 @@
     &--3-4-l {
       width: percentage(3 / 4);
     } // 75%;
-
-    &--4-5-l {
-      width: percentage(4 / 5);
-    } // 80%;
-
-    &--1-5-l {
-      width: percentage(1 / 5);
-    } // 20%;
 
     &--4-4-l {
       width: 100%;

@@ -1,0 +1,169 @@
+    <style>
+    /* For Bluedot */
+    :root {
+      /* --body-background: var(--background-primary); */
+      --body-background: #f5f5f5;
+      --content-background: var(--background-primary);
+      --color-header-background: {{@site.header_background_color}};
+      --paywall-background:rgba(0,0,0,0.8);
+      --text:var(--color-text);
+      --sub-text:var(--color-gray);
+      --accent-color: {{ @site.accent_color }};
+      --background-color: {{@site.background_color}};
+      --shop-accent-color: #000000;
+      --shop-accent-background-color: #3c7eff;
+    }
+
+    .o-app {
+      background-color: var(--background-color) !important;
+    }
+    .bluedot-signin h3.signin-subtitle {
+      color:var(--text);
+    }
+
+    .bluedot-footer { padding-top:20px; padding-bottom:30px; }
+    .bluedot-footer h2 { display:none; }
+
+    /* Style */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-accent {
+  background-color: var(--accent-color);
+}
+
+.have-paywall-message .post-content:after {
+  background: linear-gradient( 0deg, var(--body-background) 14%, hsla(0, 0%, 100%, 0) );
+}
+
+     body,
+    .c-post-card__excerpt,
+    .c-content dl,
+    .c-content fieldset,
+    .c-content form,
+    .c-content ol,
+    .c-content p,
+    .c-content pre,
+    .c-content ul
+    {
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+
+
+    .c-post-card__excerpt {
+        font-size: 14px;
+		line-height: 24px;
+    }
+
+
+    .c-post-card:active .c-post-card__title-link, .c-post-card:focus .c-post-card__title-link, .c-post-card:hover .c-post-card__title-link {
+      border-color:#04a6d7;
+    }
+
+
+{{#if @site.title_align}}
+.post-template .c-post-header__title {
+  {{#match @site.title_align '=' 'left'}}
+  text-align: left;
+  {{else match @site.title_align '=' 'right'}}
+  text-align: right;
+  {{else match @site.title_align '=' 'center'}}
+  text-align: center;
+  {{else match @site.title_align '=' 'side'}}
+  text-align: justify;
+  {{/match}}
+}
+{{/if}}
+{{#if @site.main_align}}
+.post-template .c-content {
+  {{#match @site.main_align '=' 'left'}}
+  text-align: left;
+  {{else match @site.main_align '=' 'right'}}
+  text-align: right;
+  {{else match @site.main_align '=' 'center'}}
+  text-align: center;
+  {{else match @site.main_align '=' 'side'}}
+  text-align: justify;
+  {{/match}}
+}
+{{/if}}
+{{#if @site.subtitle_align}}
+.post-template .c-content h1,
+.post-template .c-content h2,
+.post-template .c-content h3,
+.post-template .c-content h4 {
+  {{#match @site.subtitle_align '=' 'left'}}
+  text-align: left;
+  {{else match @site.subtitle_align '=' 'right'}}
+  text-align: right;
+  {{else match @site.subtitle_align '=' 'center'}}
+  text-align: center;
+  {{else match @site.subtitle_align '=' 'side'}}
+  text-align: justify;
+  {{/match}}
+}
+{{/if}}
+{{#if @site.title_font}}
+.post-template .c-post-header__title {
+  {{#match @site.title_font '=' 'noto_sans_kr'}}
+  font-family: "Noto Sans KR", sans-serif !important;
+  {{else match @site.title_font '=' 'nanum_gothic'}}
+  font-family: "Nanum Gothic", sans-serif !important;
+  {{else match @site.title_font '=' 'apple_sandol_gothic'}}
+  font-family: "Apple SD Gothic Neo", "Apple Sandol Gothic", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  {{else match @site.title_font '=' 'malgun_gothic'}}
+  font-family: "Malgun Gothic", "맑은 고딕", sans-serif !important;
+  {{else match @site.title_font '=' 'spoqa_sans'}}
+  font-family: "Spoqa Han Sans Neo", "Spoqa Han Sans", sans-serif !important;
+  {{else match @site.title_font '=' 'maruburi'}}
+  font-family: 'Maru Buri', 'MaruBuri', 'Noto Sans KR', serif !important;
+  {{/match}}
+}
+{{/if}}
+{{#if @site.main_font}}
+.post-template .c-content,
+.post-template .c-content *,
+.post-template .c-content > *,
+.post-template .c-content ul,
+.post-template .c-content li {
+  {{#match @site.main_font '=' 'noto_sans_kr'}}
+  font-family: "Noto Sans KR", sans-serif !important;
+  {{else match @site.main_font '=' 'nanum_gothic'}}
+  font-family: "Nanum Gothic", sans-serif !important;
+  {{else match @site.main_font '=' 'apple_sandol_gothic'}}
+  font-family: "Apple SD Gothic Neo", "Apple Sandol Gothic", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  {{else match @site.main_font '=' 'malgun_gothic'}}
+  font-family: "Malgun Gothic", "맑은 고딕", sans-serif !important;
+  {{else match @site.main_font '=' 'spoqa_sans'}}
+  font-family: "Spoqa Han Sans Neo", "Spoqa Han Sans", sans-serif !important;
+  {{else match @site.main_font '=' 'maruburi'}}
+  font-family: 'Maru Buri', 'MaruBuri', 'Noto Sans KR', serif !important;
+  {{/match}}
+}
+{{/if}}
+{{#if @site.subtitle_font}}
+.post-template .c-content h1,
+.post-template .c-content h2,
+.post-template .c-content h3,
+.post-template .c-content h4 {
+  {{#match @site.subtitle_font '=' 'noto_sans_kr'}}
+  font-family: "Noto Sans KR", sans-serif !important;
+  {{else match @site.subtitle_font '=' 'nanum_gothic'}}
+  font-family: "Nanum Gothic", sans-serif !important;
+  {{else match @site.subtitle_font '=' 'apple_sandol_gothic'}}
+  font-family: "Apple SD Gothic Neo", "Apple Sandol Gothic", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  {{else match @site.subtitle_font '=' 'malgun_gothic'}}
+  font-family: "Malgun Gothic", "맑은 고딕", sans-serif !important;
+  {{else match @site.subtitle_font '=' 'spoqa_sans'}}
+  font-family: "Spoqa Han Sans Neo", "Spoqa Han Sans", sans-serif !important;
+  {{else match @site.subtitle_font '=' 'maruburi'}}
+  font-family: 'Maru Buri', 'MaruBuri', 'Noto Sans KR', serif !important;
+  {{/match}}
+}
+{{/if}}
+</style>

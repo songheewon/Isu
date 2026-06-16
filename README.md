@@ -1,1 +1,1 @@
-### Isu Bluedot Theme
+### Anguk Bluedot Theme

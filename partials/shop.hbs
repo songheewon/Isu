@@ -1,17 +1,18 @@
-{{#match @custom.shop_display_status "=" "on"}}
+{{#if @site.home_visible_shop_section}}
   <div class="c-shop">
-    <div class="o-grid">
-      <div class="header">
-        <div class="c-shop__title">Shop</div>
-        <div class="c-shop__tags">
-          {{> shop/tags type="all" }}
+    <div class="o-container o-container--fluid o-container--fluid-balanced">
+      <div class="c-shop__inner">
+        <div class="header">
+          <div class="c-shop__title">{{#if @site.shop_section_title}}{{@site.shop_section_title}}{{else}}Shop{{/if}}</div>
+          <div class="c-shop__tags">
+            {{> shop/tags type="all" }}
+          </div>
         </div>
+        {{> shop/carousel }}
       </div>
-
-      {{> shop/carousel }}
     </div>
   </div>
-  <div class="c-shop-more-wrap">
+  <div class="c-shop-more-wrap o-container o-container--fluid o-container--fluid-balanced">
     <a class="c-shop-more" href="/shop/">Shop 상품 더보기</a>
   </div>
-  {{/match}}
+  {{/if}}

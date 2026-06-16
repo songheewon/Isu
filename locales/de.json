@@ -1,26 +1,27 @@
 {
-  "Loading": "Beladung",
-  "Load More": "Mehr Artikel",
+  "Skip to content": "Zum Inhalt springen",
 
-  "Latest Episodes": "Latest Episodes",
-  "Featured Post": "Featured Artikel",
+  "Loading": "Wird geladen",
+  "More Posts ↓": "Weitere Artikel ↓",
+  "All Posts →": "Alle Artikel →",
+
+  "Recent Posts": "kürzliche Artikel",
+  "Featured Posts": "Beliebte Beiträge",
   "Page Not Found": "Seite nicht gefunden",
-  "Load Comments": "Bemerkungen",
-  "You might also like": "Sie könnten daran interessiert sein",
-  "Authors": "Autoren",
   "Published with {ghostLink} & {themeLink}": "Veröffentlicht mit {ghostLink} & {themeLink}",
 
   "Share on Twitter": "Auf Twitter teilen",
   "Share on Facebook": "Auf Facebook teilen",
   "Share on LinkedIn": "Auf LinkedIn teilen",
   "Share on Pinterest": "Auf Pinterest teilen",
-  "Share via Email": "Teilen Sie per E-Mail",
+  "Share via Email": "Per E-Mail teilen",
   "Copy link": "Link kopieren",
   "Link copied to clipboard": "Link in die Zwischenablage kopiert",
 
-  "Search": "Suche",
-  "Search {siteTitle}": "Suche {siteTitle}",
-  "Type to Search": "Tippe um zu suchen",
+  "Archive": "Archiv",
+  "Tags": "Stichworte",
+  "1 min read": "1 minuten gelesen",
+  "% min read": "% minuten gelesen",
 
   "Paid": "Bezahlt",
   "Members": "Mitglieder",
@@ -31,8 +32,9 @@
   "Log out": "Ausloggen",
   "Continue": "Fortsetzen",
   "Subscribe": "Abonnieren",
-  "Subscribe Now": "Abonniere jetzt",
+  "Membership": "Mitgliedschaft",
   "Your email address": "Deine E-Mail-Adresse",
+  "{siteTitle} Newsletter": "{siteTitle} Newsletter",
   "Please check your inbox and click the link to complete the login.": "Bitte überprüfen Sie Ihren Posteingang und klicken Sie auf den Link, um die Anmeldung abzuschließen.",
   "Please check your inbox and click the link to confirm your subscription.": "Bitte überprüfen Sie Ihren Posteingang und klicken Sie auf den Link, um Ihr Abonnement zu bestätigen.",
   "Please enter a valid email address!": "Bitte geben Sie eine gültige E-Mail-Adresse ein!",
@@ -41,25 +43,19 @@
   "Already have an account?": "Hast du schon ein Konto?",
   "Don't have an account yet?": "Sie haben noch keinen Account?",
 
-  "This page is for paying subscribers only": "Diese Seite ist nur für zahlende Abonnenten",
-  "This page is for subscribers only": "Dieser Seite ist nur für Abonnenten",
-
+  "This Content Is for Members": "Dieser Inhalt ist für Mitglieder",
+  "This Content Is for Paid Members": "Dieser Inhalt ist für bezahlte Mitglieder",
   "Become a subscriber to access all of our content.": "Treten Sie dem Newsletter bei, um die neuesten Updates in Ihrem Posteingang zu erhalten",
 
-  "Choose your subscription": "Wählen Sie Ihr Abonnement",
-  "Unlock full access to {siteTitle} and see the entire library of members-only content & updates.": "Schalte den vollen Zugriff auf {siteTitle} frei und sieh dir die gesamte Bibliothek mit Inhalten und Updates nur für Mitglieder an.",
-  "Subscribe to {siteTitle}": "Abonnieren bei {siteTitle}",
-  "Choose this plan": "Wählen Sie diesen Plan",
+  "Premium Membership": "Premium Mitgliedschaft",
+  "Unlock full access to {siteTitle} and see the entire library of members-only content.": "Schalten Sie den vollständigen Zugriff auf {siteTitle} frei und zeigen Sie die gesamte Bibliothek mit Inhalten nur für Mitglieder an.",
+  "Subscribe to {siteTitle}": "Anmelden bei {siteTitle}",
   "Monthly": "Monatlich",
   "Yearly": "Jährlich",
-  "month": "Monat",
-  "year": "Jahr",
 
-  "Welcome back!": "Willkommen zurück!",
-  "Log in to your account again.": "Melden Sie sich erneut in Ihrem Konto an.",
+  "Log in to {siteTitle}": "Melden Sie sich bei {siteTitle} an",
   "Send login link": "Anmeldelink senden",
 
-  "Nice, you're a subscriber!": "Schön, dass Sie Abonnent sind!",
   "Your subscription will expire on": "Ihr Abonnement läuft am ab",
   "Your plan": "Dein Plan",
   "Card": "Karte",
@@ -67,6 +63,5 @@
   "Next bill date": "Nächstes Rechnungsdatum",
   "Edit billing info": "ERechnungsinformationen bearbeiten",
   "You have an active {siteTitle} account with access to all posts.": "Sie haben ein aktives {siteTitle} Konto mit Zugriff auf alle Posts.",
-  "You're a subscriber to free members updates": "Sie sind Abonnent der kostenlosen Mitgliederaktualisierungen",
   "You are subscribed to free updates from {siteTitle}, but don't have a paid subscription to read all the posts.": "Sie haben kostenlose Updates von {siteTitle} abonniert, haben jedoch kein kostenpflichtiges Abonnement, um alle Beiträge zu lesen."
 }

@@ -1,0 +1,61 @@
+{{!< default}}
+{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
+{{#post}}
+<article class="c-author-profile{{#unless feature_image}} c-author-profile--no-photo{{/unless}}">
+  <header class="c-author-profile__banner">
+    <div class="c-author-profile__banner-scrim" aria-hidden="true">
+      {{#if feature_image}}
+      <div
+        class="c-author-profile__banner-bg"
+        style="background-image: url('{{img_url feature_image size="xl"}}');"
+      ></div>
+      {{/if}}
+      <div class="c-author-profile__banner-overlay"></div>
+    </div>
+    <div class="c-author-profile__banner-inner">
+      {{#if feature_image}}
+      <div class="c-author-profile__photo">
+        <img
+          class="c-author-profile__photo-img lazyload"
+          src="{{img_url feature_image size="l"}}"
+          srcset="{{img_url feature_image size="m"}} 600w,
+                  {{img_url feature_image size="l"}} 1200w,
+                  {{img_url feature_image size="xl"}} 2000w"
+          sizes="(max-width: 768px) min(440px, calc(100vw - 40px)), 440px"
+          width="440"
+          height="440"
+          alt="{{title}}"
+          loading="eager"
+        />
+      </div>
+      {{/if}}
+    </div>
+  </header>
+
+  <div class="c-author-profile__body">
+    <div class="c-author-profile__body-inner">
+      {{#if primary_tag}}
+      <p class="c-author-profile__role">{{primary_tag.name}}</p>
+      {{/if}}
+
+      <h1 class="c-author-profile__name">{{title}}</h1>
+
+      {{#if custom_excerpt}}
+      <p class="c-author-profile__tagline">{{custom_excerpt}}</p>
+      {{else if excerpt}}
+      <p class="c-author-profile__tagline">{{excerpt words="24"}}</p>
+      {{/if}}
+
+      {{#if access}}
+      <section class="c-author-profile__bio c-content">
+        {{ content }}
+      </section>
+      {{else}}
+      <div class="c-author-profile__paywall">
+        {{bluedot_paywall}}
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</article>
+{{/post}}

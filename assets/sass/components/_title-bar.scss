@@ -3,27 +3,41 @@
 \*------------------------------------*/
 
 .c-title-bar {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: $space-16;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: $space-40;
+  grid-template-areas: 'title divider';
+  align-items: center;
+  margin-bottom: $space-24;
+  min-height: $space-32;
 
-  &__title {
-    margin-bottom: 0;
-    font-size: $type-xl;
-    line-height: 1;
-    font-weight: $type-800;
-    text-transform: uppercase;
-    letter-spacing: - $global-letter-spacing;
+  @include mq($from: desktop) {
+    min-height: $space-40;
   }
 
-  &__link {
-    display: flex;
-    align-items: center;
-    transition: $global-transition;
+  @include mq($from: tablet) {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-areas: 'title title title divider divider divider divider divider divider divider divider divider';
+  }
 
-    @include attention() {
-      color: var(--color-brand);
+  &--wide {
+    @include mq($from: desktop) {
+      grid-template-areas: 'title title divider divider divider divider divider divider divider divider divider divider';
     }
+  }
+
+  &__title {
+    grid-area: title;
+    font-size: $type--h-xxxs;
+    line-height: $type--h-xxxs-lh;
+    font-weight: $type-700;
+    white-space: nowrap;
+  }
+
+  &__divider {
+    grid-area: divider;
+    height: 2px;
+    background-color: var(--color-text-primary);
   }
 }

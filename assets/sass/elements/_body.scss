@@ -4,12 +4,18 @@
 
 body {
   direction: ltr;
-  color: var(--color-text);
+  color: var(--color-text-primary);
   font-size: $type-md;
-  font-family: $type-sans-serif;
-  line-height: $line-height-base;
-  background-color: var(--bg-color);
+  font-family: var(--type-sans-serif);
+  line-height: var(--line-height-base);
+  background-color: var(--background-primary);
+  overflow-x: hidden;
 
   -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
+
+  &.e-mode-mobile {
+    height: 100vh;
+    overflow: hidden;
+  }
 }

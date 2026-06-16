@@ -1,0 +1,48 @@
+{{!< default}}
+{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
+{{#post}}
+{{> post-full-feature-hero layout="image-only"}}
+<div class='o-grid'>
+  <div class='o-grid__col o-grid__col--center o-grid__col--9-10-m o-grid__col--3-4-l'>
+    <article class='c-{{ post_class }}'>
+      {{> post-header }}
+      {{> post-article-body-isu }}
+    </article>
+  </div>
+</div>
+
+  <script>
+  (function() {
+    try {
+      var id = '{{uuid}}';
+      if (!id) return;
+      var key = 'otter_read_posts';
+      var raw = localStorage.getItem(key);
+      var list = raw ? JSON.parse(raw) : [];
+      if (list.indexOf(id) === -1) {
+        list.push(id);
+        if (list.length > 500) list = list.slice(-500);
+        localStorage.setItem(key, JSON.stringify(list));
+      }
+    } catch (e) {}
+  })();
+  </script>
+
+  {{bluedot_paywall_popup}}
+{{/post}}
+{{#if @site.visible_related_post}}
+    {{> related-posts}}
+  {{/if}}
+{{#if @site.post_visible_shop_section}}
+{{> shop }}
+{{/if}}
+
+  <style>
+    .kg-width-wide {
+      max-width: 940px !important;
+    }
+    .kg-image-card {
+      margin-top: 20px !important;
+      margin-bottom: 20px !important;
+    }
+  </style>

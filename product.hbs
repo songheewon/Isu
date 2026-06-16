@@ -1,10 +1,8 @@
-{{!< default}} {{#contentFor 'body_custom_class' }} shop-template{{/contentFor}} <div class="y-product-content__wrap" style="margin-top: 80px">
-    {{#product}}
-    <div class="y-product-content {{payment.type}} paid-{{payment_status.is_paid}}">
-        {{/product}}
-        <div class="y-product-content__main">
-            {{bluedot_product}}
+{{!< default}} {{#contentFor 'body_custom_class' }} shop-template{{/contentFor}} 
+        <div class="y-product-content__wrap">
+            {{#product}}
+            <div class="y-product-content {{payment.type}} paid-{{payment_status.is_paid}}">
+                {{/product}}
+                <div class="y-product-content__main">{{bluedot_product}}</div>
+            </div>
         </div>
-        
-    </div>
-    </div>

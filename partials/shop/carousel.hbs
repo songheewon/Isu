@@ -1,7 +1,7 @@
-{{#get "products" limit=@custom.shop_posts_per_page order="published_at desc"}}
+{{#get "products" order="published_at desc"}}
 {{#if products}}
-<div class="c-shop-carousel relative">
-  <div class="c-shop-carousel__swiper overflow-hidden">
+<div class="c-shop-carousel shop-carousel relative">
+  <div class="c-shop-carousel__swiper shop-swiper overflow-hidden">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
     {{#foreach products}}
@@ -9,18 +9,108 @@
       {{> product-card }}
       </div>
     {{/foreach}}
+    </div>
   </div>
 
   <!-- If we need pagination -->
   <div class="swiper-pagination"></div>
 
   <!-- If we need navigation buttons -->
-  <div class="swiper-button-prev text-white">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-10 mr-[3px]"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+  <div class="swiper-button-prev">
+    {{> icons/swiper-nav-arrow}}
   </div>
-  <div class="swiper-button-next text-white">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-10 ml-[3px]"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+  <div class="swiper-button-next">
+    {{> icons/swiper-nav-arrow}}
   </div>
 </div>
+
+<script>
+(function initShopSwiper() {
+  var shopSwiperEl = document.querySelector('.shop-swiper');
+  if (!shopSwiperEl) return;
+  if (shopSwiperEl.swiper) return;
+  
+  if (typeof Swiper === 'undefined') {
+    setTimeout(initShopSwiper, 100);
+    return;
+  }
+  
+  var paginationEl = document.querySelector('.shop-carousel .swiper-pagination');
+  var nextEl = document.querySelector('.shop-carousel .swiper-button-next');
+  var prevEl = document.querySelector('.shop-carousel .swiper-button-prev');
+  
+  var swiperConfig = {
+    spaceBetween: 20,
+    // 기본 navigation 설정
+    navigation: nextEl && prevEl ? {
+      nextEl: nextEl,
+      prevEl: prevEl,
+    } : undefined,
+    // 기본 pagination 설정
+    pagination: paginationEl ? {
+      el: paginationEl,
+      clickable: true,
+    } : undefined,
+    breakpoints: {
+      320: {
+        slidesPerView: 2, // 모바일: 2개씩 보이게
+        spaceBetween: 12, // 패딩 축소
+        navigation: false, // 모바일에서 화살표 비활성화
+        pagination: {
+          enabled: true,
+          clickable: true,
+        }
+      },
+      480: {
+        slidesPerView: 2,
+        spaceBetween: 16, // 패딩 축소
+        navigation: false,
+        pagination: {
+          enabled: true,
+          clickable: true,
+        }
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 20, // 패딩 축소
+        navigation: false,
+        pagination: {
+          enabled: true,
+          clickable: true,
+        }
+      },
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 26,
+        navigation: false,
+        pagination: {
+          enabled: false
+        }
+      },
+      1240: {
+        slidesPerView: 4,
+        spaceBetween: 26,
+        navigation: nextEl && prevEl ? {
+          nextEl: nextEl,
+          prevEl: prevEl,
+        } : false,
+        pagination: {
+          enabled: false
+        }
+      },
+    }
+  };
+  
+  try {
+    new Swiper('.shop-swiper', swiperConfig);
+  } catch (e) {
+    console.error('Shop Swiper error:', e);
+  }
+})();
+</script>
 {{/if}}
 {{/get}}
+
+<style>
+  
+</style>

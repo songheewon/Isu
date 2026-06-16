@@ -1,0 +1,46 @@
+{{!-- 상단 히어로 다음: 피처 글 중 2번째 (published_at desc, 첫 번째는 home 최상단) --}}
+{{#get "posts" filter="featured:true" include="tags,authors" limit="2" order="published_at desc"}}
+{{#foreach posts}}
+{{#match @index "=" 1}}
+<section class="c-home-featured-second" aria-label="피처 콘텐츠">
+  <div class="o-container o-container--fluid o-container--fluid-balanced">
+    <article class="c-home-featured-second__card">
+      <div class="c-home-featured-second__media">
+        {{#if feature_image}}
+        <a href="{{url}}" class="c-home-featured-second__media-link">
+          <img
+            class="c-home-featured-second__image lazyload"
+            src="{{img_url feature_image}}"
+            alt="{{title}}"
+          />
+        </a>
+        {{else}}
+        <div class="c-home-featured-second__media-link c-home-featured-second__media--empty" aria-hidden="true"></div>
+        {{/if}}
+      </div>
+      <div class="c-home-featured-second__body">
+        {{#if primary_tag}}
+        <p class="c-home-featured-second__category">
+          <a href="{{primary_tag.url}}">{{primary_tag.name}}</a>
+        </p>
+        {{else if tags}}
+        {{#foreach tags limit="1"}}
+        <p class="c-home-featured-second__category">
+          <a href="{{url}}">{{name}}</a>
+        </p>
+        {{/foreach}}
+        {{/if}}
+        <h2 class="c-home-featured-second__title">
+          <a href="{{url}}">{{title}}</a>
+        </h2>
+        {{#if excerpt}}
+        <p class="c-home-featured-second__excerpt">{{excerpt words="48"}}</p>
+        {{/if}}
+        <a href="{{url}}" class="c-home-featured-second__btn">자세히 보기</a>
+      </div>
+    </article>
+  </div>
+</section>
+{{/match}}
+{{/foreach}}
+{{/get}}

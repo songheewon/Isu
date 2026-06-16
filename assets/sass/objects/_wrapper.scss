@@ -12,3 +12,7 @@
 
   .o-wrapper { flex: 1 0 auto; }
 }
+
+body:not(.home-template) main.o-wrapper {
+  padding-bottom: 60px;
+}

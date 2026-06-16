@@ -4,25 +4,21 @@
 
 .c-btn {
   display: inline-block;
-  padding: $space-16 $space-32;
+  padding: ($space-8 + $space-4) $space-24;
   color: var(--color-white);
   background-color: var(--color-brand);
-  font-size: $type-md;
-  line-height: $type-md-lh;
-  font-weight: $type-600;
-  font-family: $type-sans-serif;
-  letter-spacing: $global-letter-spacing;
+  font-size: $type--h-14;
+  line-height: $type-sm-lh;
+  font-weight: $type-700;
   text-align: center;
   text-transform: initial;
   white-space: nowrap;
   border: none;
   cursor: pointer;
-  border-radius: $global-border-radius;
-  transition: all $global-faster-transition ease;
+  border-radius: $space-4;
 
   @include attention() {
-    color: var(--color-white);
-    background-color: var(--color-brand);
+    opacity: .9;
     text-decoration: none;
   }
 
@@ -35,33 +31,29 @@
     width: 100%;
   }
 
+  &--fit-content {
+    width: fit-content;
+  }
+
   &--small {
-    padding: ($space-8 + half($space-8)) $space-16;
+    font-size: $type-xs;
+    line-height: $type-xs-lh;
+    padding: $space-8 $space-16;
   }
 
-  &--mini {
-    font-weight: $type-500;
-    padding: ($space-8 / 2) $space-16;
-  }
-
-  &--light {
-    color: var(--color-text);
-    background-color: var(--bg-gray);
+  &--outline {
+    color: var(--color-brand);
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1px var(--color-brand);
 
     @include attention() {
-      color: var(--color-white);
-      background-color: var(--color-dark);
+      // color: var(--color-white);
+      background-color: #d9d9d9;
     }
   }
 
-  &--dark {
-    color: var(--color-white);
-    background-color: var(--color-dark);
-
-    @include attention() {
-      color: var(--color-white);
-      background-color: var(--color-brand);
-    }
+  &--rounded {
+    border-radius: 100rem;
   }
 
   &.loading,
@@ -71,8 +63,8 @@
     justify-content: center;
 
     @-webkit-keyframes spin {
-      0%  {-webkit-transform: rotate(0deg);}
-      100% {-webkit-transform: rotate(360deg);}
+      0%   {   -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
     }
 
     &:after {
@@ -81,7 +73,7 @@
       display: block;
       height: $space-16;
       width: $space-16;
-      border: 2px solid var(--color-white);
+      border: 1px solid var(--color-white);
       border-radius: 100%;
       border-right-color: transparent;
       border-top-color: transparent;

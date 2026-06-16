@@ -1,73 +1,185 @@
-<article class="c-product-card-wrap">
-  <div class="c-product-card">
-    <div class="c-product-card__media">
-      <a class="c-product-card__image-wrap" href="{{ url }}">
-        {{#if feature_image}}
-        <img
-          class="c-product-card__image"
-          src="{{img_url feature_image}}"
-          alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}">
-        {{/if}}
-      </a>
-    </div>
-    <div class="c-product-card__content">
-      {{#if payment.type}}
-      <div class="c-product-card__type c-product-card__type--{{payment.type}}">{{payment.type_text}}</div>
-      {{/if}}
-
-      <div class="c-product-card__title-wrap">
-        <h2 class="c-product-card__title">
-          <a class="c-product-card__title-link" href="{{ url }}">{{ title }}</a>
-        </h2>
-      </div>
-
-      <div class="c-product-card__meta">
-      {{#if @member.paid}}
-        {{#if payment.have_price_sale}}
-        <div class="c-product-card__price">
-          <div class="label">무료 회원 할인가</div>
-          <div class="price">{{price payment.price_sale currencyFormat="none" currency="KRW"}}{{> won-format number=payment.price_sale}}</div>
-        </div>
-        <div class="c-product-card__price">
-          <div class="label">유료 회원 할인가</div>
-          <div class="price">
-          {{#if payment.have_price_original}}
-            {{price payment.price_original currencyFormat="none" currency="KRW"}}{{> won-format number=payment.price_original}}
-          {{else}}
-            {{price payment.price currencyFormat="none" currency="KRW"}}{{> won-format number=payment.price}}
-          {{/if}}
-          </div>
-        </div>
-        {{else}}
-          {{#if payment.have_price_original}}
-        <div class="c-product-card__price">
-          <div class="label">가격</div>
-          <div class="price">{{price payment.price_original currencyFormat="none" currency="KRW"}}{{> won-format number=payment.price_original}}</div>
-        </div>
-        <div class="c-product-card__price">
-          <div class="label">무료 회원 할인가</div>
-          <div class="price">{{price payment.price currencyFormat="none" currency="KRW"}}{{> won-format number=payment.price}}</div>
-        </div>
-          {{else}}
-        <div class="c-product-card__price">
-          <div class="label">가격</div>
-          <div class="price">{{price payment.price_original currencyFormat="none" currency="KRW"}}{{> won-format number=payment.price_original}}</div>
-        </div>
-          {{/if}}
-        {{/if}}
+<article class="c-home-product-card">
+  <!-- Image Section -->
+  <div class="c-home-product-card__media">
+    <a class="c-home-product-card__media-link" href="{{url}}">
+      {{#if feature_image}}
+      <img
+        class="c-home-product-card__image"
+        src="{{img_url feature_image size="m"}}"
+        alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
+      >
       {{else}}
-        <div class="c-product-card__price">
-          <div class="label">무료 회원 할인가</div>
-          <div class="price">{{price payment.price currencyFormat="none" currency="KRW"}}{{> won-format number=payment.price}}</div>
-        </div>
-        {{#if payment.have_price_sale}}
-        <div class="c-product-card__price">
-          <div class="label">유료 회원 할인가</div>
-          <div class="price">{{price payment.price_sale currencyFormat="none" currency="KRW"}}{{> won-format number=payment.price_sale}}</div>
-        </div>
-        {{/if}}
+      <span class="c-home-product-card__placeholder"></span>
       {{/if}}
+    </a>
+    <div class="c-home-product-card__badges">
+      {{#if published_at}}
+      <div class="new-badge" data-published="{{published_at}}" style="display: none;">NEW</div>
+      {{/if}}
+      <div class="c-home-product-card__type-badge">
+        {{#if payment.type}}
+          {{#match payment.type "=" "etc"}}
+          기타
+          {{else match payment.type "=" "webinar"}}
+          웨비나
+          {{else match payment.type "=" "online-class"}}
+          온라인 강좌
+          {{else match payment.type "=" "digital-book"}}
+          디지털북
+          {{else}}
+          {{#if payment.type_text}}{{ payment.type_text }}{{else}}기타{{/if}}
+          {{/match}}
+        {{else}}
+        기타
+        {{/if}}
       </div>
     </div>
   </div>
+  
+  <!-- Content Section -->
+  <div class="c-home-product-card__content">
+    <div>
+      <!-- Title -->
+      <h1>
+        <a href="{{url}}">{{ title }}</a>
+      </h1>
+      
+      <!-- Price Section -->
+      <div>
+        {{#if @member.paid}}
+          <div>유료회원할인가</div>
+          <div>
+            {{#if payment.have_price_sale}}
+              {{#match payment.price_sale "=" null}}
+                <div>Free</div>
+                <span>무료</span>
+              {{else match payment.price_sale "=" 0}}
+                <div>100% Off</div>
+                <span>무료</span>
+              {{else}}
+                {{#if payment.have_price_original}}
+                  <div class="discount-badge" data-original="{{price payment.price_original currency="KRW" currencyFormat="none"}}" data-sale="{{price payment.price_sale currency="KRW" currencyFormat="none"}}">할인</div>
+                {{/if}}
+                <span>{{price payment.price_sale currency="KRW" currencyFormat="none"}}원</span>
+                {{#if payment.have_price_original}}
+                  <span class="original-price">{{price payment.price_original currency="KRW" currencyFormat="none"}}원</span>
+                {{/if}}
+              {{/match}}
+            {{else}}
+              {{#if payment.have_price_original}}
+                {{#match payment.price_original "=" null}}
+                  <div>Free</div>
+                  <span>무료</span>
+                {{else match payment.price_original "=" 0}}
+                  <div>100% Off</div>
+                  <span>무료</span>
+                {{else}}
+                  <span class="original-price">{{price payment.price_original currency="KRW" currencyFormat="none"}}원</span>
+                {{/match}}
+              {{else}}
+                {{#if payment.price}}
+                  {{#match payment.price "=" null}}
+                    <div>Free</div>
+                    <span>무료</span>
+                  {{else match payment.price "=" 0}}
+                    <div>100% Off</div>
+                    <span>무료</span>
+                  {{else}}
+                    <span>{{price payment.price currency="KRW" currencyFormat="none"}}원</span>
+                  {{/match}}
+                {{else}}
+                  <div>Free</div>
+                  <span>무료</span>
+                {{/if}}
+              {{/if}}
+            {{/if}}
+          </div>
+        {{else}}
+          <div>유료회원할인가</div>
+          <div>
+            {{#if payment.have_price_sale}}
+              {{#match payment.price_sale "=" null}}
+                <div>Free</div>
+                <span>무료</span>
+              {{else match payment.price_sale "=" 0}}
+                <div>100% Off</div>
+                <span>무료</span>
+              {{else}}
+                {{#if payment.have_price_original}}
+                  <div class="discount-badge" data-original="{{price payment.price_original currency="KRW" currencyFormat="none"}}" data-sale="{{price payment.price_sale currency="KRW" currencyFormat="none"}}">할인</div>
+                {{/if}}
+                <span>{{price payment.price_sale currency="KRW" currencyFormat="none"}}원</span>
+                {{#if payment.have_price_original}}
+                  <span class="original-price">{{price payment.price_original currency="KRW" currencyFormat="none"}}원</span>
+                {{/if}}
+              {{/match}}
+            {{else}}
+              {{#if payment.price}}
+                {{#match payment.price "=" null}}
+                  <div>Free</div>
+                  <span>무료</span>
+                {{else match payment.price "=" 0}}
+                  <div>100% Off</div>
+                  <span>무료</span>
+                {{else}}
+                  <span>{{price payment.price currency="KRW" currencyFormat="none"}}원</span>
+                {{/match}}
+              {{else}}
+                <div>Free</div>
+                <span>무료</span>
+              {{/if}}
+            {{/if}}
+          </div>
+        {{/if}}
+      </div>
+    </div>
+    
+    <!-- Buy Button -->
+    <a href="{{url}}">
+      지금 구매하기
+    </a>
+  </div>
 </article>
+
+<script>
+(function() {
+  function calculateDiscount() {
+    const discountBadges = document.querySelectorAll('.discount-badge');
+    discountBadges.forEach(function(badge) {
+      const original = parseFloat(badge.getAttribute('data-original'));
+      const sale = parseFloat(badge.getAttribute('data-sale'));
+      
+      if (original && sale && original > sale) {
+        const discountRate = Math.round(((original - sale) / original) * 100);
+        badge.textContent = discountRate + '% Off';
+      }
+    });
+  }
+  
+  function showNewBadges() {
+    const newBadges = document.querySelectorAll('.new-badge');
+    const now = new Date();
+    const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    
+    newBadges.forEach(function(badge) {
+      const publishedStr = badge.getAttribute('data-published');
+      if (publishedStr) {
+        const publishedDate = new Date(publishedStr);
+        if (publishedDate >= sevenDaysAgo) {
+          badge.style.display = 'block';
+        }
+      }
+    });
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      calculateDiscount();
+      showNewBadges();
+    });
+  } else {
+    calculateDiscount();
+    showNewBadges();
+  }
+})();
+</script>

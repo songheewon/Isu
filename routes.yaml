@@ -1,11 +1,11 @@
 routes:
-  /subscribe/: members/subscribe
+  ## Routes for membership
   /membership/: members/membership
   /signup/: members/signup
   /signin/: members/signin
   /account/: members/account
 
-  # Route for Shop
+  ## Routes for shop
   /shop/online-class/: routes/shop/online-class
   /shop/webinar/: routes/shop/webinar
   /shop/digital-book/: routes/shop/digital-book
@@ -16,10 +16,14 @@ routes:
     template: blog
     filter: tag:-home
 
+  /news/:
+    controller: channel
+    template: news
+
 collections:
   /:
     permalink: /{slug}/
-    template: index
+    template: home
 
 taxonomies:
   tag: /tag/{slug}/

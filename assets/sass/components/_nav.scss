@@ -2,6 +2,39 @@
   Components > Site Navigation
 \*------------------------------------*/
 
+.c-header__nav {
+  background-color: var(--color-header-background);
+  border-bottom: 1px solid #E0E0E0;
+  @include mq($until: desktop) {
+    display: none;
+  }
+}
+
+.c-header-small__nav {
+  @include mq($from: desktop) {
+    display: none;
+  }
+  .c-nav {
+    &__link {
+      font-size: 13px;
+      line-height: 15px;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    &__submenu-list {
+      list-style: none;
+      padding-left: 5px;
+    }
+    &__submenu-url {
+      font-size: 12px;
+      line-height: 13px;
+      padding-top: 0;
+      padding-bottom: 0;
+      font-weight: bold;
+    }
+  }
+}
+
 .c-nav-wrap {
   @include mq($until: desktop) {
     display: flex;
@@ -12,28 +45,33 @@
     bottom: 0;
     right: 0;
     left: 0;
+    z-index: 10;
     width: 100%;
     height: 100vh;
     padding-top: $space-72;
-    background-color: var(--bg-color);
+    background-color: var(--background-secondary);
     opacity: 0;
     visibility: hidden;
     transform: scale(.96);
 
-    &.is-active {
-      opacity: 1;
-      visibility: visible;
-      transform: scale(1);
-      transition: all half($global-transition) cubic-bezier(.694, 0, .335,  1);
-    }
   }
 
   @include mq($from: desktop) {
     display: block;
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 }
 
 .c-nav {
+  @include mq($until: desktop) {
+    width: 100%;
+    padding-left: $space-32;
+    padding-right: $space-32;
+  }
+
   @include mq($from: desktop) {
     display: flex;
     align-items: center;
@@ -41,9 +79,7 @@
   }
 
   &__item {
-    font-size: $type-lg;
-    font-weight: $type-500;
-    white-space: nowrap;
+    line-height: 0;
 
     &:not(:last-child) {
       @include mq($from: desktop) {
@@ -52,95 +88,166 @@
     }
 
     @include mq($until: desktop) {
-      margin-bottom: $space-16;
+      margin-bottom: $space-20;
+    }
+
+    &.c-nav__item--only-desktop {
+      display: none;
+
+      @include mq($from: desktop) {
+        display: list-item;
+      }
+    }
+
+    &.c-nav__item--only-mobile {
+
+      @include mq($from: desktop) {
+        display: none;
+      }
     }
   }
 
-  &__link {
-    display: block;
-    color: var(--color-text);
-    border-bottom-color: transparent;
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
-    transition: border-bottom-color half($global-transition) ease;
+  &__item--social {
+    @include mq($until: desktop) {
+      display: inline-block;
+    }
 
-    &--current {
-      border-bottom-color: var(--color-text);
+    &:not(:last-child) {
+      @include mq($from: desktop) {
+        margin-right: $space-8;
+      }
+    }
+  }
 
-      .home-template & {
-        border-bottom-color: transparent;
+  &__item__icon {
+    display: flex;
+    width: $space-32;
+    height: $space-32;
+    fill: var(--color-text-primary);
+
+    @include mq($from: desktop) {
+      position: relative;
+
+      &:after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: transparent;
       }
     }
 
     @include attention() {
-      border-bottom-color: var(--color-text);
+      &:after {
+        background-color: var(--accent-color);
+      }
     }
   }
 
-  &__icon {
-    fill: var(--color-text);
-    vertical-align: middle;
-    transition: fill $global-faster-transition ease;
+  &__link {
+    display: flex;
+    align-items: center;
+    font-size: $type-md;
+    line-height: $type-md-lh;
+    font-weight: $type-700;
+    white-space: nowrap;
+    padding: 0 6px 4px 6px;
+    text-decoration: none;
+    cursor: pointer;
+
+    @include mq($until: desktop) {
+      font-size: $type-sm;
+      line-height: $type-sm-lh;
+    }
+
+    @include mq($from: desktop) {
+      
+    }
+
+    &--sign {
+      color: #000;
+    }
+
+    &--member {
+      display: flex;
+      min-width: 260px;
+      height: 26px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 100rem;
+      font-size: 12px;
+      font-weight: 700;
+
+      transition: all ease 0.2s;
+
+      &::after {
+        display: none;
+      }
+
+      @include mq($from: desktop) {
+        min-width: 0;
+        height: 26px;
+      }
+    }
+
+    &::after {
+      display: none;
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: none;
+    }
+
+    @include attention() {
+      background: none;
+      color: var(--accent-color);
+    }
+
+    &--current {
+      color: white;
+      background-color: black;
+      border-radius: 21px;
+      border: none;
+      text-decoration: none !important;
+      padding: 10px;
+
+      &:after {
+        border: none;
+        display: block;
+      }
+
+      @include attention() {
+        color: #fff;
+        opacity: 0.92;
+      }
+    }
   }
 }
 
 .c-nav-toggle {
-  position: absolute;
-  top: 50%;
-  right: $space-16;
-  z-index: 10;
-  height: $space-16;
-  width: $space-24;
-  cursor: pointer;
-  transform: translateY(-50%);
-
-  @include mq($from: tablet) {
-    right: $space-32;
+  svg {
+    display: block;
   }
+}
 
-  @include mq($from: desktop) {
-    display: none;
-  }
-
-  &__icon {
-    position: absolute;
-    left: 0;
-    height: 1px;
-    width: $space-24;
-    background-color: var(--color-text);
-    cursor: pointer;
-
-    &:before,
-    &:after {
-      content: '';
-      display: block;
-      height: 100%;
-      background-color: inherit;
-    }
-
-    &:before { transform: translateY(16px) }
-    &:after { transform: translateY(7px); }
-
-    .c-nav-toggle--close & {
-      height: 2px;
-      background-color: transparent;
-
-      &:before,
-      &:after {
-        position: relative;
-        visibility: visible;
-        background-color: var(--color-text);
-      }
-
-      &:before {
-        top: 9px;
-        transform: rotate(-45deg);
-      }
-
-      &:after {
-        top: 7px;
-        transform: rotate(45deg);
-      }
+body.e-mode-mobile {
+  .c-header {
+    .c-nav.o-plain-list {
+      overflow-y: auto;
     }
   }
+}
+
+/* 모바일 검색 폼 스타일은 _home.scss(Header 병합 블록) `.c-header-mobile__nav--search` */
+.c-search__stx {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.85);
 }

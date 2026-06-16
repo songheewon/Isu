@@ -1,29 +1,26 @@
 /*------------------------------------*\
-  Trumbs > Alerts
+  Components > Alerts
 \*------------------------------------*/
 
-.u-alert {
-  font-weight: $type-500;
+.c-alert {
   font-size: $type-xs;
-  font-family: $type-sans-serif;
   line-height: $type-xs-lh;
-  background: var(--bg-white);
-  padding: $space-8 $space-16;
-  border-radius: $global-border-radius;
+  font-weight: $type-500;
+  margin-top: $space-16;
 
   &:empty {
     display: none;
   }
 }
 
-.u-alert--success {
+.c-alert--success {
   color: var(--color-success);
 }
 
-.u-alert--invalid {
+.c-alert--invalid {
   color: var(--color-error);
 }
 
-.u-alert--error {
+.c-alert--error {
   color: var(--color-error);
 }

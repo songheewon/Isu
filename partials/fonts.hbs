@@ -1,18 +1,56 @@
 {{!--
-  The Fastest Google Fonts
+  웹폰트 로드 — partials/css/style.hbs (@site.title_font / @site.main_font) 및 테마 UI
+  apple_sandol_gothic · malgun_gothic 은 OS 시스템 폰트 (별도 import 없음)
   https://csswizardry.com/2020/05/the-fastest-google-fonts/
 --}}
 
-<link rel='preconnect' href='https://fonts.gstatic.com'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
-<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+{{!-- ===== 디자인 설정: noto_sans_kr ===== --}}
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" media="print" onload="this.media='all'">
 
-<link rel='preload' as='style' href='https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap' media='print' onload="this.media='all'">
+{{!-- ===== 디자인 설정: nanum_gothic ===== --}}
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" media="print" onload="this.media='all'">
 
-<link rel='preload' as='style' href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Anton&display=swap' media='print' onload="this.media='all'">
+{{!-- ===== 디자인 설정: spoqa_sans (Neo — 관리자 미리보기와 동일) ===== --}}
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css" media="print" onload="this.media='all'">
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSans-kr.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSans-kr.css" media="print" onload="this.media='all'">
+
+{{!-- ===== 디자인 설정: maruburi (@font-face 패밀리명: "Maru Buri") ===== --}}
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/fonts-archive/MaruBuri/MaruBuri.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/MaruBuri/MaruBuri.css">
+
+{{!-- ===== 테마 UI: Pretendard ===== --}}
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" media="print" onload="this.media='all'">
+
+{{!-- ===== 테마 UI: Poppins (홈 섹션 제목 등) ===== --}}
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+
+{{!-- ===== 테마: Nanum Myeongjo (구독 등) ===== --}}
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" media="print" onload="this.media='all'">
+
+{{!-- ===== 테마: Anton · Tinos ===== --}}
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap" media="print" onload="this.media='all'">
+
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,700&display=swap" media="print" onload="this.media='all'">
 
 <noscript>
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/MaruBuri/MaruBuri.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap">
 </noscript>

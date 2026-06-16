@@ -1,0 +1,24 @@
+{{#get "products" filter=filter include="tags" limit="10" order="published_at desc" as |items|}}
+{{#if items}}
+<div class="s-products-carousel__container">
+  <div class="s-products-carousel__navigation">
+    <div class="swiper-button swiper-button-prev">
+      {{> icons/swiper-nav-arrow}}
+    </div>
+    <div class="swiper-button swiper-button-next">
+      {{> icons/swiper-nav-arrow}}
+    </div>
+  </div>
+
+  <div class="s-products-carousel">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+      {{#foreach items}}
+        <div class="swiper-slide">{{> common/product/card no-js="true" }}</div>
+      {{/foreach}}
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+{{/get}}

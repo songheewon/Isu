@@ -4,7 +4,7 @@
 
   // Include Gulp & Plugins
   var gulp         = require('gulp'),
-      sass         = require('gulp-sass'),
+      sass         = require('gulp-sass')(require('sass')),
       rtlcss       = require('gulp-rtlcss'),
       cleanCSS     = require('gulp-clean-css'),
       autoprefixer = require('gulp-autoprefixer'),
@@ -67,26 +67,11 @@
       './bower_components/bootstrap-transition/scripts/transition.js',
       './bower_components/zoom.js/dist/zoom.js',
       './bower_components/jquery.fitvids/jquery.fitvids.js',
-      './node_modules/evil-icons/assets/evil-icons.min.js',
       './node_modules/lazysizes/lazysizes.min.js',
+      './node_modules/evil-icons/assets/evil-icons.min.js',
       './node_modules/clipboard/dist/clipboard.js',
-      './node_modules/headroom.js/dist/headroom.js',
-      './node_modules/headroom.js/dist/jQuery.headroom.js',
       './node_modules/prismjs/prism.js',
-      './node_modules/lunr/lunr.js',
-      './node_modules/lunr-languages/lunr.stemmer.support.js',
-      './node_modules/lunr-languages/lunr.ru.js',
-      './node_modules/lunr-languages/lunr.fr.js',
-      './node_modules/lunr-languages/lunr.de.js',
-      './node_modules/lunr-languages/lunr.es.js',
-      './node_modules/lunr-languages/lunr.pt.js',
-      './node_modules/lunr-languages/lunr.it.js',
-      './node_modules/lunr-languages/lunr.fi.js',
-      './node_modules/lunr-languages/lunr.nl.js',
-      './node_modules/lunr-languages/lunr.da.js',
-      './node_modules/lunr-languages/lunr.multi.js',
-      './assets/js/ghosthunter.js',
-      './assets/js/app.js'])
+      './assets/js/app.js'], {allowEmpty: true})
       .pipe(jshint())
       .pipe(jshint.reporter('jshint-stylish'))
       .pipe(concat('app.js'))
@@ -100,7 +85,7 @@
   // Watch
   gulp.task('watch', function() {
     gulp.watch('assets/sass/**/*.scss', gulp.series('build_css'));
-    gulp.watch(['./assets/js/app.js', './assets/js/ghosthunter.js'], gulp.series('js'));
+    gulp.watch('./assets/js/app.js', gulp.series('js'));
   });
 
   gulp.task(
@@ -113,7 +98,8 @@
     gulp.series('build_css', 'js')
   );
 
-  gulp.task('zip', function () {
+  // Theme zip for Ghost upload — must run after build so partials/compiled/inline-css.hbs matches SCSS.
+  gulp.task('zip-pack', function () {
     return gulp.src([
       './**',
       '!node_modules/**',
@@ -121,10 +107,11 @@
       '!.git/**',
       '!.DS_Store'
     ], { dot: true })
-    .pipe(zip('isu.zip'))
-    .pipe(gulp.dest('../'))
-    done();
+      .pipe(zip('isu.zip'))
+      .pipe(gulp.dest('../'));
   });
+
+  gulp.task('zip', gulp.series('build', 'zip-pack'));
 
   gulp.task(
     'default',

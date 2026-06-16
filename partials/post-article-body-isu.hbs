@@ -1,0 +1,76 @@
+      {{#if access}}
+      <section class='c-content'>
+        {{ content }}
+      </section>
+      {{#if @site.ad_visible_pc_post}}
+      <template id="post-ad-template" data-post-ad-position="{{@site.ad_position_post}}">
+        {{> banner-ad }}
+      </template>
+      {{/if}}
+      <script>
+      (function() {
+        var container = document.querySelector('.c-content');
+        if (!container) return;
+        var tmpl = document.getElementById('post-ad-template');
+        if (!tmpl) return;
+        var pos = (tmpl.getAttribute('data-post-ad-position') || 'middle').toString().trim().toLowerCase();
+        if (pos !== 'top' && pos !== 'middle' && pos !== 'bottom') {
+          pos = 'middle';
+        }
+        var holder = document.createElement('div');
+        holder.innerHTML = tmpl.innerHTML.trim();
+        if (!holder.firstChild) return;
+        var frag = document.createDocumentFragment();
+        while (holder.firstChild) {
+          frag.appendChild(holder.firstChild);
+        }
+        if (pos === 'top') {
+          if (container.firstChild) {
+            container.insertBefore(frag, container.firstChild);
+          } else {
+            container.appendChild(frag);
+          }
+          return;
+        }
+        if (pos === 'bottom') {
+          container.appendChild(frag);
+          return;
+        }
+        var paragraphs = container.querySelectorAll('p');
+        if (paragraphs.length >= 6) {
+          paragraphs[4].parentNode.insertBefore(frag, paragraphs[5]);
+        } else if (paragraphs.length >= 1) {
+          paragraphs[paragraphs.length - 1].after(frag);
+        } else {
+          container.appendChild(frag);
+        }
+      })();
+      </script>
+<div class="c-post-subscribe-row">
+      <div class="c-post-subscribe-row__comment">
+      {{bluedot_comment_button}}
+      </div>
+      {{#if @member.paid}}
+      {{#if @site.use_gift_subscription}}
+      <a class="c-post-subscribe-row__gift" href="/gift/">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M11.2 12.7218H4.8V20H11.2V12.7218Z" fill="currentColor"/>
+<path d="M19.2 12.7218H12.8V20H19.2V12.7218Z" fill="currentColor"/>
+<path d="M11.2 6.25235H4V11.1045H11.2V6.25235Z" fill="currentColor"/>
+<path d="M20 6.25235H12.8V11.1045H20V6.25235Z" fill="currentColor"/>
+<path d="M8.56 6.25235C7.7816 6.25235 7.2 5.82537 7.2 5.44367C7.2 5.26737 7.308 5.06682 7.488 4.90751C7.704 4.71666 7.988 4.61477 8.2752 4.61477C8.328 4.61477 8.3816 4.618 8.4344 4.62528C9.2352 4.75467 9.9992 5.51968 10.5488 6.25316H13.4512C13.9992 5.52049 14.7576 4.75629 15.5456 4.62851C15.9048 4.57918 16.2576 4.68189 16.512 4.90832C16.6928 5.06763 16.8 5.26818 16.8 5.44448C16.8 5.82618 16.2176 6.25316 15.44 6.25316H18.2248C18.3312 6.00004 18.4 5.73075 18.4 5.44448C18.4 4.79915 18.096 4.16028 17.5656 3.69125C16.964 3.15832 16.1528 2.9141 15.3136 3.02893C13.84 3.26669 12.6912 4.52904 12 5.51483C11.3072 4.52904 10.1528 3.26588 8.6664 3.0257C7.8512 2.91653 7.0368 3.15832 6.4344 3.69125C5.904 4.16028 5.6008 4.79915 5.6008 5.44448C5.6008 5.73075 5.6696 6.00004 5.776 6.25316H8.5608L8.56 6.25235Z" fill="currentColor"/>
+        </svg>
+        구독권 선물하기
+      </a>
+{{/if}}
+{{/if}}
+</div>
+
+      {{#primary_author}}
+      {{> card-author }}
+      {{/primary_author}}
+
+      {{else}}
+      <!-- from bluedot -->
+      {{bluedot_paywall}}
+      {{/if}}

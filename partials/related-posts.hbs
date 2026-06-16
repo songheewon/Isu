@@ -1,20 +1,20 @@
-<!--
-  Get related posts based on tags
- -->
-
-{{#get 'posts' limit='2' include='authors' filter='tags:[{{post.tags}}]+id:-{{post.id}}' as |related-posts|}}
-  {{#if related-posts}}
-  <hr>
-    <div class='c-related'>
-      <div class='o-grid'>
-        <div class='o-grid__col o-grid__col--full'>
-          <div class='c-title-bar'>
-            <h3 class='c-title-bar__title'>{{t 'You might also like' }}</h3>
-          </div>
-        </div>
-        {{> loop }}
+{{!--
+  관련 콘텐츠 — 현재 글과 동일 태그를 가진 다른 글 3개
+  카드 디자인은 home/tag-card 그대로 사용 (홈 카테고리 섹션과 동일한 박스)
+--}}
+{{#get 'posts' limit='3' include='tags,authors' filter='tags:[{{post.tags}}]+id:-{{post.id}}' order="published_at desc" as |relatedPosts|}}
+{{#if relatedPosts}}
+<section class="c-post-related" aria-label="관련 콘텐츠">
+  <div class="o-container o-container--fluid o-container--fluid-balanced">
+    <h2 class="c-post-related__heading">관련 콘텐츠</h2>
+    <div class="c-post-related__grid">
+      {{#foreach relatedPosts}}
+      <div class="c-post-related__cell">
+        {{> home/tag-card}}
       </div>
+      {{/foreach}}
     </div>
-  {{/if}}
+  </div>
+</section>
+{{/if}}
 {{/get}}
-

@@ -1,0 +1,37 @@
+<div class="ad">
+  <span class="ad__title" style="width: 100%; text-align: center; font-weight: 600; color:
+  #999999; font-weight: 500; font-size: 10px; margin-bottom: 3px; margin-top:
+  -15px; display: flex; justify-content: center;">광고</span>
+  <a class="ad__wrap" href="{{@site.ad_link_pc_post}}">
+    <img src="{{@site.ad_image_pc_post}}" alt="ad" />
+  </a>
+</div>
+<div class="mobile-ad">
+  <span class="ad__title" style="width: 100%; text-align: center; font-weight: 600; color:
+  #999999; font-weight: 500; font-size: 10px; margin-bottom: 3px; margin-top:
+  -15px; display: flex; justify-content: center;">광고</span>
+  <a class="ad__wrap" href="{{@site.ad_link_mobile_post}}">
+    <img src="{{@site.ad_image_mobile_post}}" alt="ad" />
+  </a>
+</div>
+
+<style>
+  .mobile-ad { display: none; }
+  .ad__title { width: 100%; text-align: center; font-weight: 600; color:
+  #999999; font-weight: 500; font-size: 10px; margin-bottom: 3px; margin-top:
+  -15px; } .ad { width: 100%; padding-top: 30px; padding-bottom: 30px; height:
+  auto; display: flex; flex-direction: column; justify-content: center;
+  background-color: #F8F8F8; } .ad__wrap { width: auto; height: auto; overflow:
+  visible; margin: 0 auto;} .ad__wrap img { width: auto; height: auto;
+  object-fit: cover; }
+  @media (max-width: 768px) {
+    .ad {
+      display: none;
+    }
+    .mobile-ad {
+      width: 100%; padding-top: 30px; padding-bottom: 30px; height:
+  auto; display: flex; flex-direction: column; justify-content: center;
+  background-color: #F8F8F8;
+    }
+  }
+</style>

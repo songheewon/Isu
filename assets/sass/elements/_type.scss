@@ -11,24 +11,27 @@ h6 {
   font-weight: $type-700;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.4;
+}
+
 h1 {
   font-size: $type--h-xl;
-  line-height: $type--h-xl-lh;
 }
 
 h2 {
   font-size: $type--h-lg;
-  line-height: $type--h-lg-lh;
 }
 
 h3 {
   font-size: $type--h-md;
-  line-height: $type--h-md-lh;
 }
 
 h4 {
   font-size: $type--h-sm;
-  line-height: $type--h-sm-lh;
 }
 
 h5 {
@@ -43,5 +46,5 @@ h6 {
 
 b,
 strong {
-  font-weight: $type-700;
+  font-weight: $type-600;
 }

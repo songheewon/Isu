@@ -1,0 +1,35 @@
+{{!-- custom-author 템플릿으로 작성된 글만 가져오기 --}}
+{{#get "posts" filter="custom_template:custom-author" limit="100" include="authors" as |editors|}}
+{{#if editors}}
+<section class="c-home-editors">
+  <div class="o-container o-container--fluid o-container--fluid-balanced">
+    <h2 class="c-home-editors__heading">에디터 소개</h2>
+    <div class="c-home-editors__grid">
+      {{#foreach editors}}
+      <article class="c-home-editor-card">
+        <a href="{{url}}" class="c-home-editor-card__link">
+          {{#if feature_image}}
+          <div class="c-home-editor-card__media">
+            <img
+              class="c-home-editor-card__img lazyload"
+              src="{{img_url feature_image size="m"}}"
+              alt=""
+            />
+          </div>
+          {{else}}
+          <div class="c-home-editor-card__media c-home-editor-card__media--empty" aria-hidden="true"></div>
+          {{/if}}
+          <h3 class="c-home-editor-card__title">{{title}}</h3>
+        </a>
+        {{#if custom_excerpt}}
+        <p class="c-home-editor-card__excerpt">{{custom_excerpt}}</p>
+        {{else if excerpt}}
+        <p class="c-home-editor-card__excerpt">{{excerpt words="45"}}</p>
+        {{/if}}
+      </article>
+      {{/foreach}}
+    </div>
+  </div>
+</section>
+{{/if}}
+{{/get}}

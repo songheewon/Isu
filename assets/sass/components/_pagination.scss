@@ -1,0 +1,54 @@
+/*------------------------------------*\
+  Components > Pagination
+\*------------------------------------*/
+
+.c-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: $space-32;
+  margin-bottom: $space-32;
+
+  @include mq($from: desktop) {
+    margin-top: $space-40;
+    margin-bottom: $space-40;
+  }
+
+  &--count-0 {
+    display: none;
+  }
+
+  /* 더보기: 연회색 배경 · 은은한 글자 · 플랫 (풀폭/아웃라인/필 버튼 대신) */
+  &__btn.c-btn {
+    width: auto;
+    padding: 12px 16px;
+    font-size: $type--h-14;
+    font-weight: $type-500;
+    line-height: $type-sm-lh;
+    color: #8C9499;
+    background-color: #E8EEF2;
+    border: 0;
+    border-radius: $space-8;
+    box-shadow: none;
+    @include mq($until: desktop) { 
+      width: 100%;
+    }
+
+    @include attention() {
+      opacity: 1;
+      color: #4b5563;
+      background-color: #e5e7eb;
+      text-decoration: none;
+    }
+
+    &.c-btn--loading:after {
+      border-color: #9ca3af;
+      border-right-color: transparent;
+      border-top-color: transparent;
+    }
+
+    &.c-btn--disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+}
