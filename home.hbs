@@ -58,6 +58,12 @@
     {{/foreach}}
   </div>
 
+{{#if @site.ad_visible_pc_home}}
+  {{#match @site.ad_position_home "=" "middle"}}
+    {{> ad }}
+  {{/match}}
+  {{/if}}
+  
       {{!-- 구독 영역 --}}
   {{> subscribe-form-n}}
 
@@ -69,11 +75,7 @@
   {{> home/tag-category-sections tag_slugs=@custom.tag_names}}
   {{/if}}
 
-  {{#if @site.ad_visible_pc_home}}
-  {{#match @site.ad_position_home "=" "middle"}}
-    {{> ad }}
-  {{/match}}
-  {{/if}}
+  
 
   {{> home/editors-intro}}
 
