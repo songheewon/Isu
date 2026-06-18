@@ -1,8 +1,8 @@
 {{!--
   tag_slugs: 쉼표로 구분, 공백 없이 (예: news,essay,tech)
-  - 첫번째 카테고리: hero(1) + 일반 카드(3) = 초기 4개 노출 (batch-size=4)
-  - 두번째 카테고리부터: 일반 카드 3개만 초기 노출 (batch-size=3)
-  - 이후 더보기 클릭마다 배치 단위로 노출, 60개 초과는 Ajax(tag.hbs 숨김 소스)
+  - 모든 카테고리: hero(1) + 일반 카드(3) = 초기 4개 노출
+  - 이후 더보기 클릭마다 3개씩 노출 (batch-size=3, hero는 첫 배치에 포함)
+  - 60개 초과는 Ajax(tag.hbs 숨김 소스)
 --}}
 {{#if tag_slugs}}
 {{#get "tags" filter="slug:[{{tag_slugs}}]" include="count.posts" limit="all" order="name asc"}}
@@ -10,20 +10,18 @@
 {{#foreach tags}}
 {{#if count.posts}}
 
-{{#if @first}}
-{{!-- ===== 첫번째 카테고리: hero + 카드 ===== --}}
 <section
   class="c-home-tag-feed c-home-tag-feed--has-hero"
   aria-labelledby="home-tag-feed-{{slug}}"
   data-total-posts="{{count.posts}}"
   data-per-page="15"
-  data-batch-size="4"
+  data-batch-size="3"
 >
   <div class="o-container o-container--fluid o-container--fluid-balanced">
     <h2 id="home-tag-feed-{{slug}}" class="c-home-tag-feed__heading">
       <a href="{{url}}">{{name}}</a>
     </h2>
-    {{#get "posts" filter="tag:{{slug}}" include="tags,authors" limit="60" order="published_at desc"}}
+    {{#get "posts" filter="tag:{{slug}}" include="tags,authors" limit="all" order="published_at desc"}}
     {{#if posts}}
     <div class="c-home-tag-feed__grid js-home-tag-feed-grid">
       {{#foreach posts}}
@@ -49,41 +47,6 @@
     </div>
   </div>
 </section>
-
-{{else}}
-{{!-- ===== 두번째 카테고리부터: 카드 3개 ===== --}}
-<section
-  class="c-home-tag-feed"
-  aria-labelledby="home-tag-feed-{{slug}}"
-  data-total-posts="{{count.posts}}"
-  data-per-page="15"
-  data-batch-size="3"
->
-  <div class="o-container o-container--fluid o-container--fluid-balanced">
-    <h2 id="home-tag-feed-{{slug}}" class="c-home-tag-feed__heading">
-      <a href="{{url}}">{{name}}</a>
-    </h2>
-    {{#get "posts" filter="tag:{{slug}}" include="tags,authors" limit="60" order="published_at desc"}}
-    {{#if posts}}
-    <div class="c-home-tag-feed__grid js-home-tag-feed-grid">
-      {{#foreach posts}}
-      <div class="c-home-tag-feed__cell" data-ordinal="{{@index}}">
-        {{> home/tag-card}}
-      </div>
-      {{/foreach}}
-    </div>
-    {{/if}}
-    {{/get}}
-    <div class="c-home-tag-feed__more">
-      <button
-        type="button"
-        class="c-btn c-pagination__btn js-tag-feed-more"
-        data-tag-base-url="{{url}}"
-      >더보기</button>
-    </div>
-  </div>
-</section>
-{{/if}}
 
 {{/if}}
 {{/foreach}}
