@@ -64,6 +64,8 @@
 
   {{#if @site.tag_names}}
   {{> home/tag-category-sections tag_slugs=@site.tag_names}}
+  {{else if @custom.tag_names}}
+  {{> home/tag-category-sections tag_slugs=@custom.tag_names}}
   {{/if}}
 
   

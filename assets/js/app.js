@@ -264,6 +264,29 @@ $load_posts_button.click(function(e) {
     return seen;
   }
 
+  // 홈 태그 카테고리: @site.tag_names의 slug 순서대로 섹션 재정렬
+  // (Ghost #get은 filter 목록 순서를 보존하지 않으므로 클라이언트에서 정렬)
+  function reorderHomeTagFeeds() {
+    $('.js-home-tag-feeds').each(function() {
+      var $wrap = $(this);
+      var order = ($wrap.attr('data-tag-order') || '')
+        .split(',')
+        .map(function(s) { return s.trim(); })
+        .filter(function(s) { return s.length; });
+      if (!order.length) {
+        return;
+      }
+      order.forEach(function(slug) {
+        var $section = $wrap.children('.c-home-tag-feed[data-tag-slug="' + slug + '"]');
+        if ($section.length) {
+          $wrap.append($section);
+        }
+      });
+    });
+  }
+
+  reorderHomeTagFeeds();
+
   function initHomeTagFeedBatches() {
     $('.c-home-tag-feed').each(function() {
       var $section = $(this);
