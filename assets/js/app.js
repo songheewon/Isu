@@ -278,6 +278,11 @@ $load_posts_button.click(function(e) {
         return;
       }
 
+            // hero가 있으면 hero(ordinal 0)는 첫 배치에 포함시키고, 이후 카드들만 batchSize 단위로 묶음
+      // → 초기 노출 = hero + batchSize개, 더보기 클릭당 batchSize개씩
+      var heroOffset = $section.hasClass('c-home-tag-feed--has-hero') ? 1 : 0;
+
+
       $grid.find('.c-home-tag-feed__cell').each(function() {
         var ord = parseInt($(this).attr('data-ordinal'), 10);
         if (isNaN(ord)) {
