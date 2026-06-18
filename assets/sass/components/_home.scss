@@ -1024,6 +1024,8 @@
   &__more {
     margin-top: $space-24;
     width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }
 

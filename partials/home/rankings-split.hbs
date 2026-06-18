@@ -31,20 +31,25 @@
 
       <div class="c-home-rankings__col c-home-rankings__col--recent">
         <div class="c-home-rankings__heading">최근 올라온 콘텐츠</div>
-        {{#get "posts" limit="5" order="published_at desc" include="tags,authors"}}
+        {{#get "posts" limit="all" order="published_at desc" include="tags,authors"}}
         {{#if posts}}
-        <div class="c-home-rankings__cards js-home-rankings-append">
-          {{#foreach posts}}
+        <div class="c-home-rankings__cards js-home-rankings-cards" data-batch-size="3">
+          {{#foreach posts to="3"}}
           {{> home/rankings-card}}
           {{/foreach}}
         </div>
-        {{/if}}
-        {{/get}}
-        {{#if pagination.next}}
+        <div class="c-home-rankings__queue js-home-rankings-queue" hidden aria-hidden="true">
+          {{#foreach posts from="4"}}
+          {{> home/rankings-card}}
+          {{/foreach}}
+        </div>
+        {{#if posts.[3]}}
         <div class="c-home-rankings__more">
-          {{> pagination-button}}
+          <button type="button" class="c-btn c-pagination__btn js-rankings-more">더보기</button>
         </div>
         {{/if}}
+        {{/if}}
+        {{/get}}
       </div>
     </div>
   </div>

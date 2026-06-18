@@ -190,6 +190,32 @@ $load_posts_button.click(function(e) {
 });
 
   // =====================
+  // 홈 최근 콘텐츠: 더보기마다 batch만큼 노출 (라우트 페이지네이션과 독립)
+  // =====================
+  $('.js-rankings-more').each(function () {
+    var $btn = $(this);
+    var $col = $btn.closest('.c-home-rankings__col--recent');
+    var $cards = $col.find('.js-home-rankings-cards');
+    var $queue = $col.find('.js-home-rankings-queue');
+    var batchSize = parseInt($cards.attr('data-batch-size'), 10) || 3;
+
+    function syncRankingsBtn() {
+      if ($queue.children().length === 0) {
+        $btn.closest('.c-home-rankings__more').hide();
+      }
+    }
+
+    syncRankingsBtn();
+
+    $btn.on('click', function (e) {
+      e.preventDefault();
+      var $next = $queue.children().slice(0, batchSize);
+      $cards.append($next);
+      syncRankingsBtn();
+    });
+  });
+
+  // =====================
   // 홈 태그 카테고리: 첫 6개만 표시 → 더보기마다 6개(배치). 최대 60개는 DOM에 미리 두고, 초과분은 Ajax
   // =====================
   var TAG_FEED_DEFAULT_BATCH = 6;

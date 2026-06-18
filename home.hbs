@@ -51,13 +51,6 @@
 
   {{> home/rankings-split}}
 
-  {{!-- Ajax가 /page/N/ HTML에서 파싱할 마크업(현재 페이지 글, 숨김). 최근 목록 카드와 동일 partial --}}
-  <div class="js-home-rankings-fetch-source" hidden aria-hidden="true">
-    {{#foreach posts}}
-      {{> home/rankings-card}}
-    {{/foreach}}
-  </div>
-
 {{#if @site.ad_visible_pc_home}}
   {{#match @site.ad_position_home "=" "middle"}}
     {{> ad }}
