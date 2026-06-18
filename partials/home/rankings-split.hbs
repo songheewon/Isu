@@ -3,7 +3,8 @@
     <div class="c-home-rankings__grid">
       <aside class="c-home-rankings__col c-home-rankings__col--popular">
         <div class="c-home-rankings__heading">인기 콘텐츠</div>
-        {{#get "posts" limit="5" order="view_count desc" include="tags,authors"}}
+        {{#match @site.feature_content_section_due_date "=" "seven_days"}}
+        {{#get "posts" filter="published_at:>=now-7d" limit="5" order="view_count desc" include="tags,authors"}}
         {{#if posts}}
         <ol class="c-home-rankings__list">
           {{#foreach posts}}
@@ -14,6 +15,31 @@
         </ol>
         {{/if}}
         {{/get}}
+        {{else match @site.feature_content_section_due_date "=" "fourteen_days"}}
+        {{#get "posts" filter="published_at:>=now-14d" limit="5" order="view_count desc" include="tags,authors"}}
+        {{#if posts}}
+        <ol class="c-home-rankings__list">
+          {{#foreach posts}}
+          <li class="c-home-rankings__item">
+            <a href="{{url}}" class="c-home-rankings__link">{{title}}</a>
+          </li>
+          {{/foreach}}
+        </ol>
+        {{/if}}
+        {{/get}}
+        {{else}}
+        {{#get "posts" filter="published_at:>=now-30d" limit="5" order="view_count desc" include="tags,authors"}}
+        {{#if posts}}
+        <ol class="c-home-rankings__list">
+          {{#foreach posts}}
+          <li class="c-home-rankings__item">
+            <a href="{{url}}" class="c-home-rankings__link">{{title}}</a>
+          </li>
+          {{/foreach}}
+        </ol>
+        {{/if}}
+        {{/get}}
+        {{/match}}
 
         <div class="c-home-rankings__tags">
           <h3 class="c-home-rankings__tags-title">인기 태그</h3>
