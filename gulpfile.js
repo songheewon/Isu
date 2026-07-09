@@ -107,7 +107,7 @@
       '!.git/**',
       '!.DS_Store'
     ], { dot: true })
-      .pipe(zip('isu'))
+      .pipe(zip('isu.zip'))
       .pipe(gulp.dest('../'));
   });
 

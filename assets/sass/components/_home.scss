@@ -172,15 +172,15 @@
     font-size: $type--h-sm;
     line-height: 125%;
     font-weight: $type-700;
-    color: #454A4D;
+    color: #000000;
     @include ellipsis(2);
     @include mq($from: tablet) {
-      font-size: 48px;
+      font-size: 40px;
       line-height: 1.25;
     }
 
     a {
-      color: #454A4D;
+      color: #000000;
       text-decoration: none;
 
       @include attention() {
