@@ -5,7 +5,7 @@
     <div class='c-post-header__meta'>
       <div class='c-post-header__author-info'>
         {{#primary_author}}
-          <a href="{{url}}" class="c-post-header__author">
+          <a href="{{url}}" class="c-post-header__author-avatar">
             {{#if profile_image}}
               <img src="{{profile_image}}" alt="{{name}}" class="c-post-header__author-image">
             {{else}}
@@ -15,17 +15,20 @@
                 </svg>
               </div>
             {{/if}}
-            <div class="c-post-header__author-details">
-              <span class="c-post-header__author-name">{{name}}</span>
-              <div class="c-post-header__author-subline">
-                <time class='c-post-header__date' datetime='{{date ../published_at format="YYYY-MM-DD"}}'>{{date ../published_at format='YYYY년 M월 D일'}}</time>
-                {{#match ../visibility "paid"}}
-                  <span class="c-post-header__paid-badge">유료</span>
-                {{/match}}
-              </div>
-            </div>
           </a>
         {{/primary_author}}
+        <div class="c-post-header__author-content">
+          {{#primary_author}}
+            <a href="{{url}}" class="c-post-header__author-name">{{name}}</a>
+          {{/primary_author}}
+          <div class="c-post-header__author-subline">
+            <time class='c-post-header__date' datetime='{{date format="YYYY-MM-DD"}}'>{{date format='YYYY년 M월 D일'}}</time>
+            <span class='c-post-header__reading-time'>• {{ reading_time minute=(t '1 min read') minutes=(t '% min read') }}</span>
+            {{#match visibility "paid"}}
+              <span class="c-post-header__paid-badge">유료</span>
+            {{/match}}
+          </div>
+        </div>
       </div>
 
       <div class="c-post-header__actions{{#if (not @site.comment_read_permission "none")}}{{else}} c-post-header__actions--share-only{{/if}}">

@@ -45,7 +45,7 @@
     /* font-family → partials/css/style.hbs (@site.title_font) */
     font-weight: 700;
     font-style: Bold;
-    font-size: 40px;
+    font-size: 36px;
     line-height: 1.4;
     letter-spacing: -2%;
     margin-top: 30px;
@@ -76,15 +76,37 @@
   }
 
   &__author-info {
-    display: flex;
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
     align-items: center;
-    gap: 8px 12px;
-    flex-wrap: wrap;
+    gap: 12px;
+    flex: 1 1 0%;
     min-width: 0;
     max-width: 100%;
     overflow: hidden;
     padding-bottom: 14px;
     border-bottom: 0.3px solid rgba(0, 0, 0, 0.2);
+  }
+
+  &__author-avatar {
+    display: block;
+    flex-shrink: 0;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__author-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    min-width: 0;
+    overflow: hidden;
   }
 
   &__author {
@@ -150,17 +172,24 @@
   }
 
   &__author-name {
-    flex: 1 1 0%;
+    display: block;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 600;
     font-size: 14px;
     line-height: 1.3;
     color: #000;
     min-width: 0;
+    max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     word-break: keep-all;
+    text-decoration: none;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   &__date {
@@ -174,6 +203,17 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  &__reading-time {
+    flex: 0 1 auto;
+    min-width: 0;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.3;
+    color: #88959D;
+    white-space: nowrap;
   }
 
   &__tag {

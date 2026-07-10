@@ -1,7 +1,7 @@
 {
   "name": "isu",
   "description": "블루닷 이수(Isu) 테마",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "engines": {
     "ghost": ">=4.0.0"
   },
