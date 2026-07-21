@@ -250,7 +250,7 @@
   max-width: 600px;
 
   > * + * {
-    margin-top: $space-32;
+    margin-top: 30px;
   }
 }
 
@@ -381,7 +381,7 @@ $post-ui-font: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans
   width: 100%;
   border-top: 0.3px solid rgba(0, 0, 0, 0.3);
   padding-top: 64px;
-  margin-top: 64px;
+  margin-top: 60px;
   margin-bottom: 64px;
   @include mq($until: desktop) {
     flex-direction: column;

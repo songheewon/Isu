@@ -24,7 +24,8 @@
 .kg-card figcaption {
   width: 100%;
   text-align: center;
-  padding: $space-16;
+  // 이미지↔캡션 간격은 .c-content에서 margin-top: 20px
+  padding: 0 $space-16 $space-16;
   font-size: $type-xs;
   line-height: $type-xs-lh;
   font-weight: $type-500;

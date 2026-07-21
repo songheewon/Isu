@@ -13,8 +13,9 @@
     min-width: 100%;
   }
 
+  // 기본: 요소 간 위아래 30px
   > * + * {
-    margin-top: $space-24;
+    margin-top: 30px;
   }
 
   a {
@@ -40,13 +41,23 @@
     line-height: $type-md-lh;
   }
 
+  // 구분선: 위아래 40px
   hr {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     bottom: $space-4;
+    margin-top: 40px;
     margin-bottom: 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    + * {
+      margin-top: 40px;
+    }
 
     &:before {
       content: '. . .';
@@ -54,8 +65,9 @@
     }
   }
 
+  // 소제목: 위 30px, 아래 20px
   h1, h2, h3, h4, h5, h6 {
-    margin-top: $space-40;
+    margin-top: 30px;
     letter-spacing: - $global-letter-spacing;
 
     &:first-child {
@@ -63,53 +75,39 @@
     }
 
     + * {
-      margin-top: $space-8;
+      margin-top: 20px;
     }
   }
 
   h1 {
     font-size: $type--h-sm;
     line-height: 1.4;
-
-    + h2, + h3, + h4, + h5, + h6 {
-      margin-top: $space-16;
-    }
   }
 
   h2 {
     font-size: $type--h-xs;
     line-height: 1.4;
-
-    + h3, + h4, + h5, + h6 {
-      margin-top: $space-16;
-    }
   }
 
   h3 {
     font-size: $type--h-xxs;
     line-height: 1.4;
-
-    + h4, + h5, + h6 {
-      margin-top: $space-16;
-    }
   }
 
   h4 {
     font-size: $type--h-xxs;
     line-height: 1.4;
-
-    + h5, + h6 {
-      margin-top: $space-8;
-    }
   }
 
   h5 {
     font-size: $type--h-xxxs;
     line-height: $type--h-xxxs-lh;
+  }
 
-    + h6 {
-      margin-top: $space-8;
-    }
+  // 이미지와 캡션 사이 20px
+  figure > figcaption,
+  .kg-card > figcaption {
+    margin-top: 20px;
   }
 
   dd, ol, ul {
