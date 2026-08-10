@@ -1,0 +1,115 @@
+{{!-- Floating contact speed-dial (round buttons) --}}
+<div class="c-chatbot is-open" data-chatbot>
+  <div class="c-chatbot__menu" id="chatbot-menu">
+    {{!-- 아래에서 위로: 카톡 상담 → 네이버 블로그 → 전화 문의 --}}
+    <a
+      class="c-chatbot__item"
+      href="https://pf.kakao.com/_VKCwxj"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="카톡 상담"
+      style="--i: 0"
+    >
+      <span class="c-chatbot__fab c-chatbot__fab--kakao" aria-hidden="true">
+        <svg width="22" height="20" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19.0079 4.10443C18.1203 2.77843 16.8677 1.82335 15.3713 1.14296C12.8385 -0.00801111 10.1769 -0.261854 7.43038 0.256258C5.24514 0.670052 3.31367 1.55444 1.80475 3.11689C0.349586 4.6237 -0.299239 6.38668 0.130809 8.41161C0.485849 10.0819 1.51347 11.3696 2.93863 12.3931C3.47869 12.7814 4.07501 13.1001 4.66632 13.4629C4.64882 13.5255 4.62507 13.6182 4.59507 13.7086C4.34504 14.4551 4.095 15.1992 3.85623 15.9492C3.77663 16.208 3.71937 16.4724 3.68496 16.7396C3.65496 16.9599 3.79372 17.0514 4.01375 16.9715C4.24787 16.8925 4.47211 16.7903 4.68257 16.6666C5.79644 15.9712 6.89783 15.2595 8.0092 14.5606C8.12195 14.4817 8.25928 14.439 8.4005 14.4389C9.65244 14.5898 10.9219 14.5616 12.1647 14.3554C14.5149 13.9671 16.5839 13.0711 18.2129 11.409C20.2668 9.31106 20.5756 6.45854 19.0079 4.10443Z" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="c-chatbot__caption">카톡 상담</span>
+    </a>
+
+    <a
+      class="c-chatbot__item"
+      href="https://blog.naver.com/cokkiri_dentalclinic"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="네이버 블로그"
+      style="--i: 1"
+    >
+      <span class="c-chatbot__fab c-chatbot__fab--naver" aria-hidden="true">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="c-chatbot__caption">네이버 블로그</span>
+    </a>
+
+    <a
+      class="c-chatbot__item"
+      href="tel:054-452-5656"
+      title="전화 문의"
+      aria-label="전화 문의"
+      style="--i: 2"
+    >
+      <span class="c-chatbot__fab c-chatbot__fab--phone" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.62 10.79a15.15 15.15 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.4 21 3 13.6 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="c-chatbot__caption">전화 문의</span>
+    </a>
+  </div>
+
+  <button
+    type="button"
+    class="c-chatbot__toggle"
+    data-chatbot-toggle
+    aria-controls="chatbot-menu"
+    aria-expanded="true"
+    aria-label="문의 메뉴 닫기"
+  >
+    <span class="c-chatbot__toggle-icon c-chatbot__toggle-icon--plus" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="c-chatbot__toggle-icon c-chatbot__toggle-icon--collapse" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 9.5l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </button>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('[data-chatbot]');
+  if (!root) return;
+
+  var toggle = root.querySelector('[data-chatbot-toggle]');
+  if (!toggle) return;
+
+  function isDesktop() {
+    return window.matchMedia('(min-width: 768px)').matches;
+  }
+
+  function setOpen(isOpen) {
+    // 모바일은 하단 고정 바라서 항상 연 상태 유지
+    if (!isDesktop()) isOpen = true;
+    root.classList.toggle('is-open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    toggle.setAttribute('aria-label', isOpen ? '문의 메뉴 닫기' : '문의하기');
+  }
+
+  toggle.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!isDesktop()) return;
+    setOpen(!root.classList.contains('is-open'));
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!isDesktop()) return;
+    if (!root.contains(e.target)) setOpen(false);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!isDesktop()) return;
+    if (e.key === 'Escape') setOpen(false);
+  });
+
+  window.addEventListener('resize', function () {
+    if (!isDesktop()) setOpen(true);
+  });
+})();
+</script>

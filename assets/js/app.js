@@ -530,6 +530,7 @@ $load_posts_button.click(function(e) {
       $(this).addClass('current');
       $("#"+tab_id).addClass('current');
     })
+
   });
   
   /* 요소 없는 페이지(홈 등)에서 throw 나면 이후 Swiper 전부 스킵됨 — 반드시 존재할 때만 초기화 */

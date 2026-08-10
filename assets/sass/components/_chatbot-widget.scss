@@ -1,0 +1,296 @@
+/*------------------------------------*\
+  Components > Chatbot
+  - Mobile: full-width bottom bar
+  - Desktop: round speed-dial
+\*------------------------------------*/
+
+// 모바일 하단 바에 본문이 가리지 않도록
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+.c-chatbot {
+  position: fixed;
+  z-index: 1200;
+}
+
+// ---------- Mobile: 하단 풀폭 바 ----------
+@media (max-width: 767px) {
+  .c-chatbot {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    display: block;
+  }
+
+  .c-chatbot__menu {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: #fff;
+    box-shadow: 0 -6px 24px rgba(20, 28, 22, 0.12);
+  }
+
+  .c-chatbot__item {
+    position: relative;
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: auto;
+    height: 64px;
+    min-width: 0;
+    text-decoration: none;
+    opacity: 1;
+    transform: none;
+    transition: filter 160ms ease;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      filter: brightness(0.97);
+    }
+  }
+
+  .c-chatbot__fab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent !important;
+    transition: none;
+
+    .c-chatbot__item:hover &,
+    .c-chatbot__item:focus & {
+      transform: none;
+    }
+  }
+
+  .c-chatbot__caption {
+    position: static;
+    top: auto;
+    left: auto;
+    width: auto;
+    max-width: none;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: $type-700;
+    letter-spacing: -0.03em;
+    text-align: center;
+    word-break: keep-all;
+    text-shadow: none;
+    transform: none;
+    pointer-events: none;
+  }
+
+  // 각 채널 색으로 칸을 채움
+  .c-chatbot__item:nth-child(1) {
+    color: #191919;
+    background: #fee500;
+
+    .c-chatbot__fab,
+    .c-chatbot__caption {
+      color: #191919;
+    }
+  }
+
+  .c-chatbot__item:nth-child(2) {
+    color: #fff;
+    background: #03c75a;
+
+    .c-chatbot__fab,
+    .c-chatbot__caption {
+      color: #fff;
+    }
+  }
+
+  .c-chatbot__item:nth-child(3) {
+    color: #fff;
+    background: #3b82f6;
+
+    .c-chatbot__fab,
+    .c-chatbot__caption {
+      color: #fff;
+    }
+  }
+
+  .c-chatbot__toggle {
+    display: none;
+  }
+}
+
+// ---------- Desktop: 플로팅 스피드 다이얼 ----------
+@media (min-width: 768px) {
+  .c-chatbot {
+    right: $space-32;
+    bottom: $space-32;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 44px;
+  }
+
+  .c-chatbot__menu {
+    display: none;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 32px;
+    width: 60px;
+
+    .c-chatbot.is-open & {
+      display: flex;
+    }
+  }
+
+  .c-chatbot__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60px;
+    height: 48px;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(10px) scale(0.86);
+    transition:
+      opacity 180ms ease,
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+
+    .c-chatbot.is-open & {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      transition-delay: calc(var(--i, 0) * 45ms);
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+
+      .c-chatbot__fab {
+        transform: scale(1.06);
+      }
+
+      .c-chatbot__caption {
+        color: #1a1f1c;
+      }
+    }
+  }
+
+  .c-chatbot__caption {
+    position: absolute;
+    top: calc(48px + 6px);
+    left: 50%;
+    width: max-content;
+    max-width: 76px;
+    color: #4d5650;
+    font-size: 10px;
+    line-height: 1.25;
+    font-weight: $type-600;
+    letter-spacing: -0.03em;
+    text-align: center;
+    word-break: keep-all;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+    transform: translateX(-50%);
+    transition: color 160ms ease;
+    pointer-events: none;
+  }
+
+  .c-chatbot__fab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(20, 28, 22, 0.14);
+    transition: transform 180ms ease;
+
+    &--kakao {
+      color: #191919;
+      background: #fee500;
+    }
+
+    &--naver {
+      color: var(--color-white);
+      background: #03c75a;
+    }
+
+    &--phone {
+      color: var(--color-white);
+      background: #3b82f6;
+    }
+  }
+
+  .c-chatbot__toggle {
+    position: relative;
+    flex: 0 0 60px;
+    width: 60px;
+    height: 60px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background: var(--accent-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow:
+      0 4px 12px color-mix(in srgb, var(--accent-color) 45%, transparent),
+      0 14px 32px rgba(20, 28, 22, 0.2);
+    transition: filter 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+
+    &:hover,
+    &:focus {
+      filter: brightness(1.05);
+      box-shadow:
+        0 6px 16px color-mix(in srgb, var(--accent-color) 55%, transparent),
+        0 16px 36px rgba(20, 28, 22, 0.24);
+    }
+
+    &[aria-expanded='true'] {
+      filter: none;
+      background: #1c2420;
+      box-shadow:
+        0 4px 10px rgba(28, 36, 32, 0.2),
+        0 14px 32px rgba(20, 28, 22, 0.28);
+
+      .c-chatbot__toggle-icon--plus {
+        opacity: 0;
+        transform: rotate(90deg) scale(0.7);
+      }
+
+      .c-chatbot__toggle-icon--collapse {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+      }
+    }
+  }
+
+  .c-chatbot__toggle-icon {
+    position: absolute;
+    display: inline-flex;
+    transition: opacity 180ms ease, transform 180ms ease;
+    pointer-events: none;
+
+    &--plus {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+
+    &--collapse {
+      opacity: 0;
+      transform: rotate(-20deg) scale(0.7);
+    }
+  }
+}
