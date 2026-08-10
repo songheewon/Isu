@@ -92,8 +92,10 @@
   }
 
   .o-container.o-container--fluid {
-    /* 히어로 이미지는 화면 우측 끝까지 붙는 디자인(우측 라운드 0) — 모든 화면에서 우측 패딩 제거 */
-    padding-right: 0 !important;
+    /* 모바일(스택): 좌우 여백 대칭(가운데) 유지 / 태블릿↑(좌 텍스트·우 이미지): 우측 화면 끝까지 붙도록 우측 패딩 제거 */
+    @include mq($from: tablet) {
+      padding-right: 0 !important;
+    }
   }
 
   &__inner {
